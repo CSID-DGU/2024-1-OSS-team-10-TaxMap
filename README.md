@@ -1,4 +1,4 @@
-# 2024-1-OSSP2-team-10-TaxMap
+# 2024-1-OSS-team-10-TaxMap
 
 # 🌳 티맵(Tax Map) 프로젝트
 
