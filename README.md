@@ -79,7 +79,7 @@
       <a href="">
         <img src="" width="100px;" alt="nothing"/>
         <br />
-        <sub><b>박지현</b></sub>
+        <sub><b>박지형</b></sub>
       </a>
       <br />
       프론트엔드 개발
