@@ -1,7 +1,5 @@
 package OSSP214.taxmap.controllers;
 
-import OSSP214.taxmap.models.Coords;
-import OSSP214.taxmap.models.OrganizationInfo;
 import OSSP214.taxmap.models.SubsidyInfo;
 import OSSP214.taxmap.services.SubsidyInfoService;
 import org.springframework.web.bind.annotation.*;
