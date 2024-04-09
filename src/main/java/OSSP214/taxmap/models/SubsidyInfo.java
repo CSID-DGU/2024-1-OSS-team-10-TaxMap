@@ -16,9 +16,9 @@ public class SubsidyInfo {
 
     private String govOffice;
 
-    private int financialYear;
+    private String financialYear;
 
-    private int businessYear;
+    private String businessYear;
 
     private String businessName;
 
@@ -30,23 +30,23 @@ public class SubsidyInfo {
 
     private String address;
 
-    private Long totalBusinessExpense;
+    private String totalBusinessExpense;
 
-    private Long govExpense;
+    private String govExpense;
 
-    private Long localExpense;
+    private String localExpense;
 
-    private Long selfExpense;
+    private String selfExpense;
 
-    private Long requestedSubsidy;
+    private String requestedSubsidy;
 
-    private Long govBudget;
+    private String govBudget;
 
-    private Long localBudget;
+    private String localBudget;
 
-    private Long requestedPaid;
+    private String requestedPaid;
 
-    private Long authorityPaid;
+    private String authorityPaid;
 
     private String businessPurpose;
 

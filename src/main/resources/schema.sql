@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS subsidy_info;
+
 CREATE TABLE subsidy_info
 (id bigint not null auto_increment,
  gov_office varchar(255),
