@@ -1,42 +1,33 @@
 package OSSP214.taxmap.controllers;
 
-import OSSP214.taxmap.models.SubsidyInfo;
-import OSSP214.taxmap.services.SubsidyInfoService;
+import OSSP214.taxmap.models.OrganizationInfo;
+import OSSP214.taxmap.services.OrganizationInfoService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/map")
 public class MainController {
-    private final SubsidyInfoService subsidyInfoService;
+    private final OrganizationInfoService organizationInfoService;
 
-    public MainController(SubsidyInfoService subsidyInfoService) {
-        this.subsidyInfoService = subsidyInfoService;
+    public MainController(OrganizationInfoService organizationInfoService) {
+        this.organizationInfoService = organizationInfoService;
     }
 
 
 //    @GetMapping
-//    public List<OrganizationInfo> getMarkers(@RequestBody List<Coords> coords) {
-//
-//    }
-//
-//    @GetMapping(path = "/{id}")
-//    public OrganizationInfo getOrganizationInfo(@PathVariable Long id) {
-//
+//    public List<OrganizationInfo> getMarkers(@RequestBody Coords[] coords) {
+//        organizationInfoRepository.
 //    }
 
-    @RequestMapping(path = "/{id}")
-    public SubsidyInfo one(@PathVariable Long id) {
-        Optional<SubsidyInfo> subsidyInfoOptional = subsidyInfoService.getById(id);
-        return subsidyInfoOptional.orElse(null);
+    @GetMapping(path = "/all")
+    public List<OrganizationInfo> all() {
+        return organizationInfoService.getAll();
     }
 
-    @RequestMapping(path = "/all")
-    public List<SubsidyInfo> all() {
-        List<SubsidyInfo> subsidyInfoList = subsidyInfoService.getAll();
-        for (SubsidyInfo subsidyInfo : subsidyInfoList) {System.out.println(subsidyInfo.getId());}
-        return subsidyInfoList;
+    @GetMapping(path = "/{id}")
+    public OrganizationInfo one(@PathVariable Long id) {
+        return organizationInfoService.getById(id).orElseThrow();
     }
 }
