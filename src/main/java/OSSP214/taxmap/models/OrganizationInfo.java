@@ -1,8 +1,18 @@
 package OSSP214.taxmap.models;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.util.List;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 // @Table(name = "organizations")
 public class OrganizationInfo {
 
@@ -11,6 +21,13 @@ public class OrganizationInfo {
     private Long id;
 
     private String orgName;
+
+    @ManyToOne
+    @JoinColumn
+    private Coords coords;
+
+    @OneToMany(mappedBy = "orgInfo")
+    List<SubsidyInfo> subsidyInfos;
 
     private String representativeName;
 
@@ -21,4 +38,6 @@ public class OrganizationInfo {
     private double locationLatitude;
 
     private double locationLongitude;
+
+    // private string imageURL;
 }
