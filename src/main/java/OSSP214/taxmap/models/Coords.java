@@ -23,5 +23,5 @@ public class Coords {
     private double longitude;
 
     @OneToMany(mappedBy = "coords")
-    private List<OrganizationInfo> organizations;
+    private List<Organization> organizations;
 }
