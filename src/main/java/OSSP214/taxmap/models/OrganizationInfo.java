@@ -1,16 +1,14 @@
 package OSSP214.taxmap.models;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
 @Entity
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 // @Table(name = "organizations")
@@ -34,10 +32,6 @@ public class OrganizationInfo {
     private String phoneNumber;
 
     private String address;
-
-    private double locationLatitude;
-
-    private double locationLongitude;
 
     // private string imageURL;
 }
