@@ -22,6 +22,10 @@ public class SubsidyInfo {
 
     private String businessName;
 
+    @ManyToOne
+    @JoinColumn
+    private OrganizationInfo orgInfo;
+
     private String orgName;
 
     private String representativeName;
@@ -48,25 +52,36 @@ public class SubsidyInfo {
 
     private String authorityPaid;
 
+    @Column(columnDefinition = "TEXT")
     private String businessPurpose;
 
+    @Column(columnDefinition = "TEXT")
     private String businessDescription;
 
+    @Column(columnDefinition = "TEXT")
     private String businessDuration;
 
+    @Column(columnDefinition = "TEXT")
     private String businessLocation;
 
+    @Column(columnDefinition = "TEXT")
     private String subjectNumber;
 
+    @Column(columnDefinition = "TEXT")
     private String miscExpense;
 
+    @Column(columnDefinition = "TEXT")
     private String proceedsProcessMethod;
 
+    @Column(columnDefinition = "TEXT")
     private String applierAsset;
 
+    @Column(columnDefinition = "TEXT")
     private String expectedBenefit;
 
+    @Column(columnDefinition = "TEXT")
     private String performanceGoal;
 
+    @Column(columnDefinition = "TEXT")
     private String considerations;
 }
