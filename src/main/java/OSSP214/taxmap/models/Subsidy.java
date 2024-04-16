@@ -1,5 +1,6 @@
 package OSSP214.taxmap.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -8,7 +9,7 @@ import lombok.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class SubsidyInfo {
+public class Subsidy {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,8 +24,9 @@ public class SubsidyInfo {
     private String businessName;
 
     @ManyToOne
+    @JsonBackReference // 순환 참조 해결 위해, DTO 구성 후 넘겨주는 방법으로 해결하는 것이 바람직
     @JoinColumn
-    private OrganizationInfo orgInfo;
+    private Organization orgInfo;
 
     private String orgName;
 
