@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/subsidy")
@@ -19,16 +18,15 @@ public class SubsidyController {
     }
 
 
+    // 모든 보조금 검색
     @RequestMapping(path = "/all")
     public List<Subsidy> all() {
-        List<Subsidy> subsidyList = subsidyService.getAll();
-        for (Subsidy subsidy : subsidyList) {System.out.println(subsidy.getId());}
-        return subsidyList;
+        return subsidyService.getAll();
     }
 
+    // 보조금 id로 검색
     @RequestMapping(path = "/{id}")
     public Subsidy one(@PathVariable Long id) {
-        Optional<Subsidy> subsidyInfoOptional = subsidyService.getById(id);
-        return subsidyInfoOptional.orElse(null);
+        return subsidyService.getById(id).orElseThrow();
     }
 }

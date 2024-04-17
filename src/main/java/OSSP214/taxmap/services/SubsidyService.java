@@ -23,6 +23,4 @@ public class SubsidyService {
     public Optional<Subsidy> getById(Long id) {
         return subsidyRepository.findById(id);
     }
-
-    // public List<SubsidyInfo> getByOrganization(String organization) {return subsidyInfoRepository.}
 }

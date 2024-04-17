@@ -7,6 +7,7 @@ import lombok.*;
 
 import java.util.List;
 
+// 기업 정보
 @Entity
 @Getter
 @Setter

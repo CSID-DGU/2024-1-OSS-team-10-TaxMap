@@ -20,11 +20,14 @@ public class OrganizationController {
         this.organizationService = organizationService;
     }
 
+
+    // 모든 기업 검색
     @GetMapping(path = "/all")
     public List<Organization> all() {
         return organizationService.getAll();
     }
 
+    // 기업 id로 검색
     @GetMapping(path = "/{id}")
     public Organization one(@PathVariable Long id) {
         return organizationService.getById(id).orElseThrow();

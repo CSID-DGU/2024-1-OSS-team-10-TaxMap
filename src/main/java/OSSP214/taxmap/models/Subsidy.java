@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
+
+// 보조금 정보, column이 다 varchar(255)라서 정리 필요
 @Entity
 @Getter
 @Setter
