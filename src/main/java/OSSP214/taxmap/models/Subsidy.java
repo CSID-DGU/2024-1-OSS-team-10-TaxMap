@@ -5,7 +5,8 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Data
+@Getter
+@Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -24,7 +25,7 @@ public class Subsidy {
     private String businessName;
 
     @ManyToOne
-    @JsonBackReference // 순환 참조 해결 위해, DTO 구성 후 넘겨주는 방법으로 해결하는 것이 바람직
+    @JsonBackReference // 순환 참조 해결 위해, DTO 구성 후 넘겨주는 방법으로 변경 필요
     @JoinColumn
     private Organization orgInfo;
 
