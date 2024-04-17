@@ -17,12 +17,11 @@ import java.util.Optional;
 public class OrganizationService {
 
     private final OrganizationRepository organizationRepository;
-    private final SubsidyRepository subsidyRepository;
 
-    public OrganizationService(OrganizationRepository organizationRepository, SubsidyRepository subsidyRepository) {
+    public OrganizationService(OrganizationRepository organizationRepository) {
         this.organizationRepository = organizationRepository;
-        this.subsidyRepository = subsidyRepository;
     }
+
 
     public List<Organization> getAll() {
         return organizationRepository.findAll();
@@ -30,30 +29,5 @@ public class OrganizationService {
 
     public Optional<Organization> getById(Long id) {
         return organizationRepository.findById(id);
-    }
-
-    // bean 생성과 서버 시작 사이에 호출되는 메서드
-    // 데이터 400개 기준 7.5초정도 걸림
-
-    @EventListener(ContextRefreshedEvent.class)
-    @Transactional
-    public void init() {
-        List<Subsidy> subsidies = subsidyRepository.findAll();
-        for (Subsidy subsidy : subsidies) {
-            Organization organization = organizationRepository.findByOrgName(subsidy.getOrgName())
-                    .orElseGet(() ->
-                            Organization.builder()
-                                    .subsidies(new ArrayList<>())
-                                    .orgName(subsidy.getOrgName())
-                                    .representativeName(subsidy.getRepresentativeName())
-                                    .phoneNumber(subsidy.getPhoneNumber())
-                                    .address(subsidy.getAddress())
-                                    .build());
-
-            subsidy.setOrgInfo(organization);
-
-            organization.getSubsidies().add(subsidy);
-            organizationRepository.save(organization);
-        }
     }
 }
