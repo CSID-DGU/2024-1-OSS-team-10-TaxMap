@@ -6,6 +6,7 @@ import lombok.*;
 
 import java.util.List;
 
+// 마커 정보
 @Entity
 @Getter
 @Setter
