@@ -7,8 +7,11 @@ import OSSP214.taxmap.repositories.CoordsRepository;
 import OSSP214.taxmap.repositories.OrganizationRepository;
 import OSSP214.taxmap.repositories.SubsidyRepository;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.poiji.bind.Poiji;
+import com.poiji.option.PoijiOptions;
 import jakarta.transaction.Transactional;
 import lombok.Data;
+import org.apache.poi.ss.usermodel.*;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.http.HttpEntity;
@@ -19,6 +22,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -58,12 +63,33 @@ public class StartupBehaviour {
 
 
     // bean 생성과 서버 시작 사이에 호출되는 메서드
+    // 3776개 데이터 기준 약 9분 소요
     @Transactional
     @EventListener(ContextRefreshedEvent.class)
     public void onStartup() {
         // db 구성 완료 시 호출 안하도록 기능 구현해야 함
+
+        loadExcelData("c:/db/bojo2022.xlsx");
         initOrganizations();
         initCoordinates();
+    }
+
+    // xlsx 파일에서 시트, 행 순회하며 subsidy 데이터 받아오기
+    public void loadExcelData(String fileName) {
+        File file = new File(fileName);
+        try (Workbook wb = WorkbookFactory.create(file)) {
+            // 첫 번쨰 sheet 건너뜀
+            for (int i = 1; i <= wb.getNumberOfSheets(); i++) {
+                // 각 sheet마다
+                PoijiOptions options = PoijiOptions.PoijiOptionsBuilder.settings()
+                        .sheetIndex(i)
+                        .build();
+                List<Subsidy> subsidyList = Poiji.fromExcel(file, Subsidy.class, options);
+                subsidyRepository.saveAll(subsidyList);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     // subsidy에서 기업 정보 추출 후 organization과 연결
@@ -103,7 +129,7 @@ public class StartupBehaviour {
         HttpEntity<ResponseDTO> request = new HttpEntity<>(headers);
 
         // 주소 존재하는 organization만 받아옴
-        List<Organization> organizations = organizationRepository.findAllByAddressNot("");
+        List<Organization> organizations = organizationRepository.findAllByAddressNotNull();
         for (Organization organization : organizations) {
             try {
                 // 카카오 API 요청

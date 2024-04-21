@@ -20,6 +20,11 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-hateoas'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.projectlombok:lombok'
+
+	// apache poi dependency 취약점, 문제 될 건 없어보임
+	// CVE-2024-26308, Score: 7.5
+	// CVE-2024-25710, Score: 5.5
+	implementation 'com.github.ozlerhakan:poiji:4.4.0'
 	annotationProcessor('org.projectlombok:lombok')
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'com.mysql:mysql-connector-j'
