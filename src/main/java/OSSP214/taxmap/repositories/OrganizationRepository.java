@@ -10,5 +10,5 @@ import java.util.Optional;
 @Repository
 public interface OrganizationRepository extends JpaRepository<Organization, Long> {
     Optional<Organization> findByOrgName(String orgName);
-    List<Organization> findAllByAddressNot(String address);
+    List<Organization> findAllByAddressNotNull();
 }
