@@ -1,6 +1,7 @@
 package OSSP214.taxmap.controllers;
 
 import OSSP214.taxmap.models.Subsidy;
+import OSSP214.taxmap.models.SubsidyDTO;
 import OSSP214.taxmap.services.SubsidyService;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,8 +21,11 @@ public class SubsidyController {
 
     // 모든 보조금 검색
     @RequestMapping(path = "/all")
-    public List<Subsidy> all() {
-        return subsidyService.getAll();
+    public List<SubsidyDTO> all() {
+        List<Subsidy> subsidies = subsidyService.getAll();
+        return subsidies.stream()
+                .map(SubsidyDTO::new)
+                .toList();
     }
 
     // 보조금 id로 검색
