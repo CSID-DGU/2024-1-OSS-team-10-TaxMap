@@ -1,0 +1,10 @@
+.searchbar-background-image {
+  width: 100%;
+  height: auto;
+  background: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.21) 0%,
+      rgba(0, 0, 0, 0.21) 100%
+    ),
+    #fff;
+}
