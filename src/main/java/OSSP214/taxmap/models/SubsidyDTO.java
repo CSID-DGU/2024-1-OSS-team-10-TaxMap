@@ -8,12 +8,13 @@ import lombok.Setter;
 public class SubsidyDTO {
     private long id;
     private String businessName;
-    private long receivedSubsidy;
+    private long requestedSubsidy;
 
     public SubsidyDTO(Subsidy subsidy) {
         this.id = subsidy.getId();
         this.businessName = subsidy.getBusinessName();
-        this.receivedSubsidy = subsidy.getRequestedPaid() + subsidy.getAuthorityPaid();
+        // this.requestedSubsidy = subsidy.getRequestedSubsidy();
+        this.requestedSubsidy = 1000;
     }
 }
 
