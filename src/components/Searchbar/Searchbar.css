@@ -1,7 +1,7 @@
 .searchbar-container {
   position: relative;
   width: 100%;
-  height: 380px;
+  height: 460px;
   background-size: cover;
   background-position: center;
   display: flex;
@@ -20,34 +20,7 @@
   font-weight: 800;
   line-height: normal;
 }
-/*
-기존
 
-.searchbar-input-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-  width: 766px;
-  height: 30px;
-  flex-shrink: 0;
-  border-radius: 30px;
-  border: 4px solid #8a7be5;
-  background: white;
-  
-}
-
-.searchbar-input-container input {
-  flex-grow: 1; 
-  border: none;
-  margin-right: 10px; 
-  padding: 10px 20px;
-  border-radius: 30px;
-  font-size: 16px;
-  color: #333;
-  font-family: NanumSquare;
-}
-*/
 .searchbar-input-container {
   display: flex;
   justify-content: space-between; /* input과 button 사이의 간격을 조정 */
@@ -86,4 +59,40 @@
 /* 입력 창 클릭 시 검은 테두리 표시 제거 */
 .searchbar-input-container input:focus {
   outline: none;
+}
+
+/*  검색어 목록 ui */
+.suggestions-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+  position: absolute;
+  width: 100%;
+  background: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 0 0 8px 8px;
+  overflow: hidden;
+  max-height: 300px;
+  overflow-y: auto; /* 추천 목록이 많을 경우 스크롤 가능 */
+}
+
+.suggestions-list li {
+  padding: 10px 20px;
+  border-bottom: 1px solid #f1f1f1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.suggestions-list li:hover {
+  background-color: #f8f8f8;
+}
+
+.suggestions-icon {
+  margin-right: 10px;
+  flex-shrink: 0; /* 아이콘 크기 유지 */
+}
+
+.suggestion-text {
+  flex-grow: 1; /* 텍스트가 남은 공간을 차지하도록 */
 }
