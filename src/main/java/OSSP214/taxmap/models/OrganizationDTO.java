@@ -13,7 +13,7 @@ public class OrganizationDTO {
     private String representative;
     private String phoneNumber;
 
-    private long totalSubsidies;
+    private long totalReceivedSubsidy;
     private List<SubsidyDTO> subsidies;
 
     public OrganizationDTO(Organization org) {
@@ -24,7 +24,7 @@ public class OrganizationDTO {
         this.subsidies = org.getSubsidies().stream()
                 .map(SubsidyDTO::new)
                 .toList();
-         this.totalSubsidies = subsidies.stream()
-                .mapToLong(SubsidyDTO::getRequestedSubsidy).sum();
+         this.totalReceivedSubsidy = subsidies.stream()
+                .mapToLong(SubsidyDTO::getReceivedSubsidy).sum();
     }
 }
