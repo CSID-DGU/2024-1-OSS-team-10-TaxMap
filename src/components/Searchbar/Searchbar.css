@@ -1,0 +1,89 @@
+.searchbar-container {
+  position: relative;
+  width: 100%;
+  height: 380px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.searchbar-title {
+  color: white;
+  text-align: center; /* 중앙 정렬 */
+  margin-bottom: 20px; /* 검색 입력란과의 간격 */
+  font-family: NanumSquare;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+}
+/*
+기존
+
+.searchbar-input-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  width: 766px;
+  height: 30px;
+  flex-shrink: 0;
+  border-radius: 30px;
+  border: 4px solid #8a7be5;
+  background: white;
+  
+}
+
+.searchbar-input-container input {
+  flex-grow: 1; 
+  border: none;
+  margin-right: 10px; 
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-size: 16px;
+  color: #333;
+  font-family: NanumSquare;
+}
+*/
+.searchbar-input-container {
+  display: flex;
+  justify-content: space-between; /* input과 button 사이의 간격을 조정 */
+  align-items: center;
+  padding: 0;
+  width: 766px;
+  height: 50px;
+  border-radius: 30px;
+  border: 4px solid #8a7be5;
+  background: #8a7be5; /* 버튼 배경과 동일하게 하기 위함*/
+}
+
+.searchbar-input-container input {
+  flex-grow: 1; /* input 필드가 남은 공간을 모두 차지하도록 함 */
+  border: none;
+  padding: 0 15px; /* 입력 텍스트와 입력 필드의 경계 사이 여백 조정 */
+  height: 100%;
+  border-radius: 25px 0 0 25px; /* 왼쪽 둥근 모서리만 적용 */
+  font-size: 16px;
+  color: #333;
+  font-family: NanumSquare;
+}
+.search-button {
+  width: 50px;
+  height: 100%;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.search-button-image {
+  width: 100%;
+  height: auto;
+}
+
+/* 입력 창 클릭 시 검은 테두리 표시 제거 */
+.searchbar-input-container input:focus {
+  outline: none;
+}
