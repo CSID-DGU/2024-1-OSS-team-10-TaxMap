@@ -12,7 +12,9 @@ function Footer() {
         </div>
         <div className="footer-bottom-container">
           <span className="footer-copyright">© 2024-1-OSS-team-10-TaxMap</span>
-          <img src={githubLogo} alt="GitHub Logo" className="github-logo" />
+          <a href="https://github.com/CSID-DGU/2024-1-OSS-team-10-TaxMap">
+            <img src={githubLogo} alt="GitHub Logo" className="github-logo" />
+          </a>
         </div>
       </div>
     </footer>
