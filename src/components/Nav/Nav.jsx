@@ -6,7 +6,9 @@ function Nav() {
     <div>
       {/* NavBar*/}
       <div className="nav_bar">
-        <img src={taxMapLogo} alt="taxMapLogo" className="taxMapLogo"></img>
+        <a href="/">
+          <img src={taxMapLogo} alt="taxMapLogo" className="taxMapLogo"></img>
+        </a>
       </div>
     </div>
   );
