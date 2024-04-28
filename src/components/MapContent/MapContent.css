@@ -1,0 +1,4 @@
+.map-container {
+  width: 100%;
+  height: calc(100vh - 70px); /* nav 크기 빼기*/
+}

@@ -2,10 +2,8 @@ import React from "react";
 import searchbarImageFilterOverlap from "../../assets/images/searchbar-image-filter-overlap.png";
 import searchIcon from "../../assets/images/search-icon-overlap.png";
 import { useNavigate } from "react-router-dom";
-
-//import searchbarBackgroundImg from "../../assets/images/searchbar-background-image.png";
-//import searchbarBackgroundFilter from "../../assets/images/searchbar-background-image-black-filter.png";
 import "./Searchbar.css";
+
 function Searchbar() {
   const navigate = useNavigate();
   function navigateToMapPage() {
