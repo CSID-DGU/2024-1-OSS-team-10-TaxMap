@@ -27,7 +27,7 @@ public class CoordsDTO {
                 .map(OrganizationDTO::new)
                 .toList();
         this.maxTotalSubsidy = organizations.stream()
-                .max(Comparator.comparing(OrganizationDTO::getTotalSubsidies)).get()
-                .getTotalSubsidies();
+                .max(Comparator.comparing(OrganizationDTO::getTotalReceivedSubsidy)).get()
+                .getTotalReceivedSubsidy();
     }
 }
