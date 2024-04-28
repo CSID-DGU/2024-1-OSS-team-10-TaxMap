@@ -69,9 +69,9 @@ public class StartupBehaviour {
     public void onStartup() {
         // db 구성 완료 시 호출 안하도록 기능 구현해야 함
 
-        loadExcelData("c:/db/bojo2022.xlsx");
-        initOrganizations();
-        initCoordinates();
+        //loadExcelData("c:/db/bojo2022.xlsx");
+        //initOrganizations();
+        //initCoordinates();
     }
 
     // xlsx 파일에서 시트, 행 순회하며 subsidy 데이터 받아오기
@@ -151,12 +151,13 @@ public class StartupBehaviour {
                             Coords.builder()
                             .latitude(latitude)
                             .longitude(longitude)
+                            .address(organization.getAddress())
                             .organizations(new ArrayList<>())
                             .build()
                     );
 
                     // organization과 coords 관계 설정 후 저장
-                    organization.setCoords(coords);
+                    organization.setCoordsInfo(coords);
                     organizationRepository.save(organization);
                     coords.getOrganizations().add(organization);
                     coordsRepository.save(coords);
