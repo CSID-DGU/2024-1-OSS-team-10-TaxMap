@@ -12,7 +12,7 @@ function MapContent() {
 
     script.onload = () => {
       window.kakao.maps.load(() => {
-        // 입력값 없을 경우, '동국대 신공학관'  위도 경도에 좌표 표시
+        // 입력값 없을 경우, 기본 값으로 '동국대 신공학관'  위도 경도에 좌표 표시
         const options = {
           center: new window.kakao.maps.LatLng(
             37.55805491922956,

@@ -6,9 +6,17 @@ import "./Searchbar.css";
 
 function Searchbar() {
   const navigate = useNavigate();
+
   function navigateToMapPage() {
     navigate("/map");
   }
+  // 검색어 입력 후 엔터 키 쳤을 때 MapPage 이동
+  function handleKeyDown(event) {
+    if (event.key == "Enter") {
+      navigateToMapPage();
+    }
+  }
+
   return (
     <div
       className="searchbar-container"
@@ -21,6 +29,7 @@ function Searchbar() {
         <input
           type="text"
           placeholder="공공데이터 세금 사용 지역 및 혜택정보를 한눈에 확인해 보세요"
+          onKeyDown={handleKeyDown}
         />
         <button
           type="submit"
