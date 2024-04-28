@@ -1,70 +1,108 @@
-# Getting Started with Create React App
+# 2024-1-OSS-team-10-TaxMap
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# 🌳 티맵(Tax Map) 프로젝트
 
-## Available Scripts
+<div align="center">
+  <img src="https://example.com/tax-map-logo.png" alt="Tax Map Logo" width="200">
+</div>
 
-In the project directory, you can run:
+티맵 프로젝트는 세금 지출의 투명성과 이해를 높이고자 개인 납세액이 어떻게 공공 프로젝트에 사용되는지 쉽게 시각화하여 제공하는 서비스입니다.
 
-### `npm start`
+[![Project Status](https://img.shields.io/badge/status-active-brightgreen)](https://example.com)
+[![License](https://img.shields.io/badge/license-MIT-blue)](https://opensource.org/licenses/MIT)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 🎯 프로젝트 목표
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **투명성 및 인사이트 제공:** 시각화된 자료로 세금 지출에 대한 통찰력 제공 및 세금의 가치 이해도 향상
+- **공공 참여 강화:** 세금 사용에 대한 국민 의견 수렴으로 세금 의식 고취 및 정보 공유
 
-### `npm test`
+## 🧰 기술 스택
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 프론트엔드
+<div>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" title="React" width="40" height="40"/>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" title="JavaScript" width="40" height="40"/>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" title="CSS3" width="40" height="40"/>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" title="HTML5" width="40" height="40"/>
+</div>
 
-### `npm run build`
+### 백엔드
+<div>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" title="Spring" width="40" height="40"/>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" title="Java" width="40" height="40"/>
+</div>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 데이터 분석
+<div>
+ <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" title="Python" width="40" height="40"/>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" title="Pandas" width="40" height="40"/>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" title="NumPy" width="40" height="40"/>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/matplotlib/matplotlib-original.svg" title="Matplotlib" width="40" height="40"/>
+</div>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 인프라
+<div>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" title="Docker" width="40" height="40"/>
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" title="AWS" width="40" height="40"/>
+</div>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 🚀 프로젝트 기간
 
-### `npm run eject`
+- **시작:** 2023년 3월 17일
+- **종료 예정:** 2023년 6월 12일
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 👥 팀 구성
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<table>
+  <tr>
+    <td align="center">
+      <a href="">
+        <img src="" width="100px;" alt=""/>
+        <br />
+        <sub><b>정승환</b></sub>
+      </a>
+      <br />
+      팀장
+      <br />
+      프로젝트 관리
+    </td>
+    <td align="center">
+      <a href="">
+        <img src="" width="100px;" alt="nothing"/>
+        <br />
+        <sub><b>박기문</b></sub>
+      </a>
+      <br />
+      백엔드 개발
+    </td>
+    <td align="center">
+      <a href="">
+        <img src="" width="100px;" alt="nothing"/>
+        <br />
+        <sub><b>박지형</b></sub>
+      </a>
+      <br />
+      프론트엔드 개발
+      <br />
+      웹 디자인  
+    </td>
+    <td align="center">
+      <a href="">
+        <img src="" width="100px;" alt="nothing"/>
+        <br />
+        <sub><b>전우현</b></sub>
+      </a>
+      <br />
+      데이터 분석    
+    </td>
+  </tr>
+</table>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 📚 참고 자료
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- 공공 데이터 플랫폼 및 정부 API 
+- 세금 인식 및 재정 정책 관련 연구 자료
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+> 세금은 사회를 지탱하는 근간입니다. 티맵 프로젝트를 통해 세금의 가치를 재조명하고, 투명성과 신뢰를 바탕으로 더 나은 미래를 만들어 갑시다.
