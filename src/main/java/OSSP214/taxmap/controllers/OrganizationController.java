@@ -2,6 +2,7 @@ package OSSP214.taxmap.controllers;
 
 
 import OSSP214.taxmap.models.Organization;
+import OSSP214.taxmap.models.OrganizationDTO;
 import OSSP214.taxmap.services.OrganizationService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,13 +24,16 @@ public class OrganizationController {
 
     // 모든 기업 검색
     @GetMapping(path = "/all")
-    public List<Organization> all() {
-        return organizationService.getAll();
+    public List<OrganizationDTO> all() {
+        List<Organization> organizations = organizationService.getAll();
+        return organizations.stream()
+                .map(OrganizationDTO::new)
+                .toList();
     }
 
     // 기업 id로 검색
     @GetMapping(path = "/{id}")
-    public Organization one(@PathVariable Long id) {
-        return organizationService.getById(id).orElseThrow();
+    public OrganizationDTO one(@PathVariable Long id) {
+        return new OrganizationDTO(organizationService.getById(id).orElseThrow());
     }
 }

@@ -1,6 +1,5 @@
 package OSSP214.taxmap.models;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -18,11 +17,11 @@ public class Coords {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String address;
 
     private double latitude;
     private double longitude;
 
-    @JsonManagedReference
-    @OneToMany(mappedBy = "coords")
+    @OneToMany(mappedBy = "coordsInfo")
     private List<Organization> organizations;
 }

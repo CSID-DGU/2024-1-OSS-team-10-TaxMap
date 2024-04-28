@@ -1,6 +1,6 @@
 package OSSP214.taxmap.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.poiji.annotation.ExcelCell;
 import jakarta.persistence.*;
 import lombok.*;
@@ -33,8 +33,8 @@ public class Subsidy {
     private String businessName;
 
     @ManyToOne
-    @JsonBackReference // 순환 참조 해결 위해, DTO 구성 후 넘겨주는 방법으로 변경 필요
     @JoinColumn
+    @JsonIgnore
     private Organization orgInfo;
 
     @ExcelCell(5)
@@ -50,31 +50,31 @@ public class Subsidy {
     private String address;
 
     @ExcelCell(9)
-    private String totalBusinessExpense;
+    private long totalBusinessExpense;
 
     @ExcelCell(10)
-    private String govExpense;
+    private long govExpense;
 
     @ExcelCell(11)
-    private String localExpense;
+    private long localExpense;
 
     @ExcelCell(12)
-    private String selfExpense;
+    private long selfExpense;
 
     @ExcelCell(13)
     private String requestedSubsidy;
 
     @ExcelCell(14)
-    private String govBudget;
+    private long govBudget;
 
     @ExcelCell(15)
-    private String localBudget;
+    private long localBudget;
 
     @ExcelCell(16)
-    private String requestedPaid;
+    private long requestedPaid;
 
     @ExcelCell(17)
-    private String authorityPaid;
+    private long authorityPaid;
 
     @ExcelCell(18)
     @Column(columnDefinition = "TEXT")
