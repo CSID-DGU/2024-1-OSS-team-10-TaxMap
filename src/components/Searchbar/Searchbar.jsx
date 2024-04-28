@@ -1,11 +1,16 @@
 import React from "react";
 import searchbarImageFilterOverlap from "../../assets/images/searchbar-image-filter-overlap.png";
 import searchIcon from "../../assets/images/search-icon-overlap.png";
+import { useNavigate } from "react-router-dom";
+
 //import searchbarBackgroundImg from "../../assets/images/searchbar-background-image.png";
 //import searchbarBackgroundFilter from "../../assets/images/searchbar-background-image-black-filter.png";
 import "./Searchbar.css";
-
 function Searchbar() {
+  const navigate = useNavigate();
+  function navigateToMapPage() {
+    navigate("/map");
+  }
   return (
     <div
       className="searchbar-container"
@@ -19,7 +24,11 @@ function Searchbar() {
           type="text"
           placeholder="공공데이터 세금 사용 지역 및 혜택정보를 한눈에 확인해 보세요"
         />
-        <button type="submit" className="search-button">
+        <button
+          type="submit"
+          className="search-button"
+          onClick={navigateToMapPage}
+        >
           <img src={searchIcon} alt="검색" className="search-button-image" />
         </button>
       </div>
