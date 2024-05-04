@@ -27,7 +27,8 @@ function Searchbar() {
     setInputValue(value);
 
     if (value.length > 1) {
-      // 사용자 입력 단어 혹은 문구와 연관된 회사명, 주소 등을 백엔드 DB로 부터 가져와 검색어 목록 자동 완성 제안
+      // 백엔드 API 미구현 상태 - 사용자 입력 단어 혹은 문구와 연관된 회사명, 주소 등을 백엔드 DB로 부터 가져와 검색어 목록 자동 완성 제안
+      // 카카오 맵 API 이용
       const suggestionData = await fetchSuggestions(value);
       setSuggestions(suggestionData || []);
     } else {
@@ -72,7 +73,7 @@ function Searchbar() {
           type="text"
           placeholder="공공데이터 세금 사용 지역 및 혜택정보를 한눈에 확인해 보세요"
           onKeyDown={handleKeyDown} // 버튼 클릭 없이 엔터 키만으로 지도 페이지로 이동
-          onChange={handleInputChange} // 사용자 입력 시 연관된 단어 제안 기능 (자동 완성 기능)
+          onChange={handleInputChange} // 사용자 입력이 발생하면 감지 후 검색어 제안
         />
         <button
           type="submit"

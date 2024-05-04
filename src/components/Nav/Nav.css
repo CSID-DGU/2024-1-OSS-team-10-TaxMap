@@ -1,4 +1,7 @@
 .nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-start; /* 로고와 요소들을 왼쪽부터 차례대로 배치 */
   width: 100%;
   height: 70px;
   background: #fff;
@@ -12,7 +15,41 @@
   margin-top: 18px;
   margin-bottom: 17px;
   margin-left: 42px;
-  /*margin-right: 1738px;*/
+  margin-right: 50px;
   background: url(../../assets/images/taxmap-official-logo.png) #fff 0px 0px /
     99.878% 100% no-repeat;
+}
+
+.links-container {
+  display: flex;
+  justify-content: space-between; /* nav 요소 사이 간격 지정*/
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.service-mode,
+.department-mode {
+  display: flex; /* navlink 내부요소인 텍스트 수평 수직 중앙정렬 */
+  width: 177px;
+  height: 70px;
+  flex-shrink: 0;
+  align-items: center; /* 내용을 세로 중앙으로 정렬 */
+  justify-content: center; /* 내용을 수평 중앙으로 정렬 */
+  color: #000;
+  font-family: "NanumSquare", sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+  text-decoration-line: none;
+  text-align: center;
+}
+
+.service-mode {
+  margin-right: 20px; /* 서비스 모드와 부처별 모드 사이의 간격 */
+}
+
+.service-mode:hover,
+.department-mode:hover {
+  color: #8371de; /* 마우스 오버시 텍스트 색상 변경 */
 }

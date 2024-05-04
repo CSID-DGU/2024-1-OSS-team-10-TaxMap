@@ -8,6 +8,8 @@ function App() {
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/map" element={<MapPage />} />
+        {/**url 파라미터 설정 */}
+        <Route path="/map/:mode" element={<MapPage />} />
       </Routes>
     </BrowserRouter>
   );
