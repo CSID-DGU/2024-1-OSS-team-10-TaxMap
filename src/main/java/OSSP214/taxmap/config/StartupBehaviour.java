@@ -3,8 +3,10 @@ package OSSP214.taxmap.config;
 import OSSP214.taxmap.models.Coords;
 import OSSP214.taxmap.models.Organization;
 import OSSP214.taxmap.models.Subsidy;
+import OSSP214.taxmap.models.SubsidyBusiness;
 import OSSP214.taxmap.repositories.CoordsRepository;
 import OSSP214.taxmap.repositories.OrganizationRepository;
+import OSSP214.taxmap.repositories.SubsidyBusinessRepository;
 import OSSP214.taxmap.repositories.SubsidyRepository;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.poiji.bind.Poiji;
@@ -53,12 +55,14 @@ public class StartupBehaviour {
     private final CoordsRepository coordsRepository;
 
     private final RestTemplate restTemplate;
+    private final SubsidyBusinessRepository subsidyBusinessRepository;
 
-    public StartupBehaviour(SubsidyRepository subsidyRepository, OrganizationRepository organizationRepository, CoordsRepository coordsRepository, RestTemplate restTemplate) {
+    public StartupBehaviour(SubsidyRepository subsidyRepository, OrganizationRepository organizationRepository, CoordsRepository coordsRepository, RestTemplate restTemplate, SubsidyBusinessRepository subsidyBusinessRepository) {
         this.subsidyRepository = subsidyRepository;
         this.organizationRepository = organizationRepository;
         this.coordsRepository = coordsRepository;
         this.restTemplate = restTemplate;
+        this.subsidyBusinessRepository = subsidyBusinessRepository;
     }
 
 
@@ -69,13 +73,14 @@ public class StartupBehaviour {
     public void onStartup() {
         // db 구성 완료 시 호출 안하도록 기능 구현해야 함
 
-        //loadExcelData("c:/db/bojo2022.xlsx");
+        //loadSubsidyData("c:/db/bojo2022.xlsx");
+        //loadBusinessData("c:/db/bojo_srv.xlsx");
         //initOrganizations();
         //initCoordinates();
     }
 
     // xlsx 파일에서 시트, 행 순회하며 subsidy 데이터 받아오기
-    public void loadExcelData(String fileName) {
+    public void loadSubsidyData(String fileName) {
         File file = new File(fileName);
         try (Workbook wb = WorkbookFactory.create(file)) {
             // 첫 번쨰 sheet 건너뜀
@@ -86,6 +91,21 @@ public class StartupBehaviour {
                         .build();
                 List<Subsidy> subsidyList = Poiji.fromExcel(file, Subsidy.class, options);
                 subsidyRepository.saveAll(subsidyList);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void loadBusinessData(String fileName) {
+        File file = new File(fileName);
+        try (Workbook wb = WorkbookFactory.create(file)) {
+            for (int i = 1; i <= wb.getNumberOfSheets(); i++) {
+                PoijiOptions options = PoijiOptions.PoijiOptionsBuilder.settings()
+                        .sheetIndex(i)
+                        .build();
+                List<SubsidyBusiness> businessesList = Poiji.fromExcel(file, SubsidyBusiness.class, options);
+                subsidyBusinessRepository.saveAll(businessesList);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
