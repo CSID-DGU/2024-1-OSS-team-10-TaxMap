@@ -24,4 +24,6 @@ public class OrganizationService {
     public Optional<Organization> getById(Long id) {
         return organizationRepository.findById(id);
     }
+
+    public List<Organization> getByNameLike(String name) { return organizationRepository.findAllByOrgNameContainingIgnoreCase(name); }
 }
