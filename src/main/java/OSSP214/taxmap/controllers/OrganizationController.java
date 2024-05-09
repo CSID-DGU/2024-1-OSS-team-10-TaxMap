@@ -36,4 +36,12 @@ public class OrganizationController {
     public OrganizationDTO one(@PathVariable Long id) {
         return new OrganizationDTO(organizationService.getById(id).orElseThrow());
     }
+
+    @GetMapping(path = "/list/{name}")
+    public List<OrganizationDTO> like(@PathVariable String name) {
+        List<Organization> organizations = organizationService.getByNameLike(name);
+        return organizations.stream()
+                .map(OrganizationDTO::new)
+                .toList();
+    }
 }

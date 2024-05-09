@@ -1,5 +1,6 @@
 package OSSP214.taxmap.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.poiji.annotation.ExcelCell;
 import jakarta.persistence.*;
 import lombok.*;
@@ -33,6 +34,7 @@ public class Subsidy {
 
     @ManyToOne
     @JoinColumn
+    @JsonIgnore
     private Organization orgInfo;
 
     @ExcelCell(5)
