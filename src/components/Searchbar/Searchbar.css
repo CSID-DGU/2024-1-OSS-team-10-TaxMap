@@ -96,3 +96,41 @@
 .suggestion-text {
   flex-grow: 1; /* 텍스트가 남은 공간을 차지하도록 */
 }
+
+/* 토글 버튼*/
+.toggle-buttons-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  width: 469px;
+  height: 50px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: #342d57;
+}
+
+.toggle-button {
+  flex: 1;
+  padding: 10px;
+  background-color: transparent;
+  cursor: pointer;
+  border-radius: 10px;
+  border: none;
+  color: #fff;
+  font-family: NanumSquare;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.toggle-button.active {
+  background-color: white;
+  color: #000;
+  font-family: NanumSquare;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}

@@ -33,7 +33,7 @@
 
 .dropdown-content {
   position: absolute;
-  top: 70px; /* Adjust based on the height of your nav-bar */
+  top: 70px;
   left: 0;
   display: none; /*초기값*/
   background-color: #f9f9f9;

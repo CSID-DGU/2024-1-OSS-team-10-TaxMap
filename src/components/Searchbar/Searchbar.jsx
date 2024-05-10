@@ -60,6 +60,17 @@ function Searchbar() {
     setSuggestions([]); // 검색어 제안 목록 숨김
     navigateToMapPage(); // 검색어 실행
   };
+
+  // 토클 버튼 - 사용자의 선택 저장
+  const [searchOption, setSearchOption] = useState("address-building-name"); // 디폴트 : '도로명 주소, 건물이름을 알아요'
+
+  const toggleSearchOption = () => {
+    setSearchOption((prevOption) =>
+      prevOption === "address-building-name"
+        ? "company"
+        : "address-building-name"
+    );
+  };
   return (
     <div
       className="searchbar-container"
@@ -85,6 +96,24 @@ function Searchbar() {
       </div>
       {/* 검색 제안 목록 -- css 미적용*/}
       {renderSuggestions()}
+      <div className="toggle-buttons-container">
+        <button
+          className={`toggle-button  ${
+            searchOption === "address-building-name" ? "active" : ""
+          }`}
+          onClick={() => setSearchOption("address-building-name")}
+        >
+          도로명 주소, 건물 이름을 알아요
+        </button>
+        <button
+          className={`toggle-button ${
+            searchOption === "company" ? "active" : ""
+          }`}
+          onClick={() => setSearchOption("company")}
+        >
+          회사명을 알아요
+        </button>
+      </div>
     </div>
   );
 }

@@ -51,7 +51,14 @@ function Nav() {
             </NavLink>
             {hoveredItem === "department" && (
               <div className="dropdown-content" style={{ display: "grid" }}>
-                <p>가습기살균사건과 4.16 세월호참사 특별조사위원회</p>
+                <p>
+                  5ㆍ18민주화운동 <br />
+                  진상규명조사위원회
+                </p>
+                <p>
+                  가습기살균사건과 <br />
+                  4.16 세월호참사 특별조사위원회
+                </p>
                 <p>감사원</p>
                 <p>개인정보위원회</p>
                 <p>경찰청</p>
@@ -111,7 +118,6 @@ function Nav() {
                 <p>행정중심복합건설청</p>
                 <p>헌법재판소</p>
                 <p>환경부</p>
-                <p>5ㆍ18민주화운동 진상규명조사위원회</p>
               </div>
             )}
           </div>
