@@ -26,7 +26,35 @@
   align-items: center;
   justify-content: flex-start;
 }
+/* nav 세부 항목 */
+.nav-item {
+  position: relative;
+}
 
+.dropdown-content {
+  position: absolute;
+  top: 70px; /* Adjust based on the height of your nav-bar */
+  left: 0;
+  display: none; /*초기값*/
+  background-color: #f9f9f9;
+  width: 1000px;
+  /*width: auto;*/
+  padding: 10px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  grid-template-columns: repeat(4, 1fr); /* 4행 고정 */
+  display: grid;
+  grid-gap: 10px; /* 요소간 간격*/
+  justify-content: center;
+  align-items: center;
+  /* 글자 */
+  color: #000;
+  font-family: NanumSquare;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
 .service-mode,
 .department-mode {
   display: flex; /* navlink 내부요소인 텍스트 수평 수직 중앙정렬 */
