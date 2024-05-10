@@ -1,11 +1,30 @@
-.suggestion-address {
-  display: block; /* 또는 inline-block, 필요에 따라 */
-  font-size: 0.8em; /* 글자 크기 조정 */
-  margin-top: 5px; /* 상단 여백 */
-  color: #000;
-  font-family: NanumSquare;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
+/* Sidebar.css */
+.sidebar {
+  position: absolute;
+  top: 70px; /* 네비게이션 바 바로 아래 위치하도록 top 값을 설정 */
+  right: 0; /* 페이지의 오른쪽에 위치 */
+  width: 300px;
+  background-color: white;
+  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1); /* 좌측에 그림자 효과 추가 */
+  z-index: 1000; /* 지도 위에 오도록 높은 z-index 값 설정 */
+  border-left: 1px solid #ccc; /* 왼쪽 테두리선 추가 */
+  padding: 20px; /* 내부 여백 설정 */
+  box-sizing: border-box;
+  height: calc(100vh - 70px); /* nav 크기 빼기*/
+  overflow-y: auto; /* 내용이 넘칠 경우 스크롤바 표시 */
+}
+
+.close-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.organizations-container {
+  overflow-y: auto; /* 내용이 넘칠 경우 스크롤바 표시 */
+  padding: 5px; /* 약간의 패딩 추가 */
 }

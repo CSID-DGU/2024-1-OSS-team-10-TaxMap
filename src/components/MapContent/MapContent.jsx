@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./MapContent.css";
 import { fetchBoundaryOrganizations } from "../../services/suggestionService"; // 백엔드 API 호출
+import Sidebar from "../Sidebar/Sidebar";
 
 function MapContent({ coordinates }) {
   // 사용자가 선택한 장소의 좌표를 props로 받아옴
@@ -8,6 +9,14 @@ function MapContent({ coordinates }) {
 
   // 마커 데이터 저장 (데모)
   const [markers, setMarkers] = useState([]);
+
+  // 선택된 마커의 정보를 사이드바에 출력 목적
+  const [selectedMarker, setSelectedMarker] = useState(null);
+
+  // 사이드 바 닫기
+  const closeSidebar = () => {
+    setSelectedMarker(null);
+  };
 
   useEffect(() => {
     // 스크립트 로드 후 kakao.map 객체 접근 및 지도 로드, autofalse로 자동 로드 방지
@@ -59,13 +68,18 @@ function MapContent({ coordinates }) {
               // 이전 마커 삭제 로직 추가 필요
               // 지도에 마커 추가
               data.forEach((markerData) => {
-                new window.kakao.maps.Marker({
+                const marker = new window.kakao.maps.Marker({
                   map: map,
                   position: new window.kakao.maps.LatLng(
                     markerData.latitude,
                     markerData.longitude
                   ),
                   title: markerData.address, // 추가정보 표시 :주소
+                });
+
+                // 마커 클릭 이벤트 핸들러
+                window.kakao.maps.event.addListener(marker, "click", () => {
+                  setSelectedMarker(markerData); // 클릭된 마커 정보 저장
                 });
               });
             } else {
@@ -82,18 +96,9 @@ function MapContent({ coordinates }) {
   return (
     <div>
       <div ref={mapContainerRef} className="map-container"></div>
-      <div className="marker-list">
-        {markers.map((marker, index) => (
-          <div key={index}>
-            <h4>{marker.address}</h4>
-            {marker.organizations.map((org, idx) => (
-              <p key={idx}>
-                {org.name} - {org.totalReceivedSubsidy}
-              </p>
-            ))}
-          </div>
-        ))}
-      </div>
+      {selectedMarker && (
+        <Sidebar marker={selectedMarker} onClose={closeSidebar} />
+      )}
     </div>
   );
 }
