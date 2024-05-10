@@ -1,0 +1,11 @@
+.suggestion-address {
+  display: block; /* 또는 inline-block, 필요에 따라 */
+  font-size: 0.8em; /* 글자 크기 조정 */
+  margin-top: 5px; /* 상단 여백 */
+  color: #000;
+  font-family: NanumSquare;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}

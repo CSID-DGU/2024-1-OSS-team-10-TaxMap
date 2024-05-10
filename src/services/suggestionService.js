@@ -17,7 +17,12 @@ export const fetchSuggestions = async (keyword) => {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const data = await response.json();
-    return data.documents; // 카카오 API의 응답에서 실제 제안 목록을 반환
+    return data.documents.map((item) => ({
+      place_name: item.place_name,
+      address_name: item.address_name,
+      lat: item.y,
+      lng: item.x,
+    })); // 카카오 API의 응답에서 실제 제안 목록을 반환
   } catch (error) {
     console.error("Error fetching suggestions:", error);
     return []; // 에러 발생 시 빈 배열 반환

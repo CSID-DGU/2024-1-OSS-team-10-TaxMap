@@ -45,13 +45,13 @@ function Searchbar() {
       suggestions.length > 0 && (
         <ul className="suggestions-list">
           {suggestions.map((suggestion, index) => (
-            <li
-              key={index}
-              onClick={() => handleSuggestionClick(suggestion.place_name)}
-            >
+            <li key={index} onClick={() => handleSuggestionClick(suggestion)}>
               {/* 아이콘 */}
               {/* <img src="path_to_icon" alt="" className="suggestions-icon" /> */}
               <span className="suggestion-text">{suggestion.place_name}</span>
+              <span className="suggestion-address">
+                {suggestion.address_name}
+              </span>
             </li>
           ))}
         </ul>
@@ -59,16 +59,19 @@ function Searchbar() {
     );
   };
   // 검색어 제안 클릭 핸들러
-  const handleSuggestionClick = async (placeName) => {
-    // 비동기 처리 이유 :
-    const coordinates = await fetchCoordinates(placeName); // 사용자가 클릭한 장소의 좌표 가져오기
+  const handleSuggestionClick = async (suggestion) => {
+    // 비동기 처리 이유 : 좌표를 api로부터 가져오기 위함
+    const coordinates = await fetchCoordinates(suggestion.place_name); // 사용자가 클릭한 장소의 좌표 가져오기
     if (coordinates) {
-      navigate("/map", { state: { coordinates } }); // 좌표를 MapPage로 전달
+      navigate("/map", {
+        state: { coordinates, address: suggestion.address_name },
+      }); // 좌표를 MapPage로 전달
     } else {
       console.error("Failed to fetch coordinates");
     }
     //navigate("/map", { state: { coordinates } });  // 수정 후
     // setInputValue(placeName); // 입력창에 검색어 설정 (수정 전)
+    setInputValue(suggestion.place_name);
     setSuggestions([]); // 검색어 제안 목록 숨김 (공통)
     //navigateToMapPage(); // 검색어 실행 (수정 전)
   };
