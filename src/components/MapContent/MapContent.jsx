@@ -1,8 +1,10 @@
 import React, { useEffect, useRef } from "react";
 import "./MapContent.css";
+import { fetchBoundaryOrganizations } from "../../services/suggestionService"; // 백엔드 API 호출
 
-function MapContent() {
+function MapContent({ coordinates }) {
   const mapContainerRef = useRef(null); // DOM에 접근하기 위한 ref 객체 생성
+  // 위치 정보 가져옴
 
   useEffect(() => {
     // 스크립트 로드 후 kakao.map 객체 접근 및 지도 로드, autofalse로 자동 로드 방지
@@ -13,18 +15,39 @@ function MapContent() {
     script.onload = () => {
       window.kakao.maps.load(() => {
         // 입력값 없을 경우, 기본 값으로 '동국대 신공학관'  위도 경도에 좌표 표시
+
         const options = {
           center: new window.kakao.maps.LatLng(
-            37.55805491922956,
-            126.99832780535394
+            coordinates ? coordinates.lat : 37.55805491922956, // 사용자 선택 좌표 : 디폴트 좌표(신공학관)
+            coordinates ? coordinates.lng : 126.99832780535394
           ),
           level: 4,
         };
         // ref 객체로 DOM 요소에 접근하여 지도 생성
         const map = new window.kakao.maps.Map(mapContainerRef.current, options);
+
+        // // 백엔드로 전송하기 위한 현재 지도 영역 가져옴
+        // const bounds = map.getBounds();
+
+        // // 지도의 남서쪽과 북동쪽 좌표를 객체에서 추출
+        // const swLatLng = bounds.getSouthWest();
+        // const neLatLng = bounds.getNorthEast();
+
+        // // 백엔드 API로 지도 영역 정보(SW, NE) 전송
+        // fetchOrganizations(swLatLng, neLatLng);
+
+        // 지도 이벤트 리스너 : 사용자의 지도 이동이 끝날 때마다 경계 정보를 백엔드에게 전송
+        window.kakao.maps.event.addListener(map, "bounds_chaned", () => {
+          const bounds = map.getBounds();
+          const swLatLng = bounds.getSouthWest();
+          const neLatLng = bounds.getNorthEast();
+
+          // 서비스 계층을 통해 백엔드에 경계 정보 전송
+          fetchBoundaryOrganizations(swLatLng, neLatLng);
+        });
       });
     };
-  }, []);
+  }, [coordinates]);
 
   return <div ref={mapContainerRef} className="map-container"></div>;
 }
