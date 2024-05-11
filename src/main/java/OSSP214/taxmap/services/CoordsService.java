@@ -38,5 +38,20 @@ public class CoordsService {
                 viewRange.getMaxLat(),
                 viewRange.getMinLng(),
                 viewRange.getMaxLng());
+
+        // 필터링 로직
+        if (viewRange.getGovOfficeFilter() != null) {
+            for (Coords coords : coordsList) {
+                List<Organization> organizations = coords.getOrganizations();
+                for (Organization organization : organizations) {
+                    List<Subsidy> subsidies = organization.getSubsidies();
+                    subsidies.removeIf(subsidy -> !subsidy.getGovOffice().equals(viewRange.getGovOfficeFilter()));
+                }
+                organizations.removeIf(organization -> organization.getSubsidies().isEmpty());
+            }
+            coordsList.removeIf(coords -> coords.getOrganizations().isEmpty());
+        }
+
+        return coordsList;
     }
 }
