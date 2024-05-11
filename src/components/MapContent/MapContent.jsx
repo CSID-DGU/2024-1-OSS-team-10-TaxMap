@@ -48,7 +48,7 @@ function MapContent({ coordinates }) {
 
           try {
             const response = await fetch(
-              "http://124.49.226.94:9999/api/map/view",
+              `${process.env.REACT_APP_API_URL}/api/map/view`,
               {
                 method: "POST",
                 headers: {
