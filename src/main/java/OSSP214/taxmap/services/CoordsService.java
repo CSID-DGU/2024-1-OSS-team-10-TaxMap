@@ -1,6 +1,8 @@
 package OSSP214.taxmap.services;
 
 import OSSP214.taxmap.models.Coords;
+import OSSP214.taxmap.models.Organization;
+import OSSP214.taxmap.models.Subsidy;
 import OSSP214.taxmap.models.ViewRange;
 import OSSP214.taxmap.repositories.CoordsRepository;
 import org.springframework.stereotype.Service;
@@ -31,8 +33,7 @@ public class CoordsService {
     }
 
     public List<Coords> getByViewRange(ViewRange viewRange) {
-
-        return coordsRepository.findAllByLatitudeBetweenAndLongitudeBetween(
+        List<Coords> coordsList = coordsRepository.findAllByViewRange(
                 viewRange.getMinLat(),
                 viewRange.getMaxLat(),
                 viewRange.getMinLng(),
