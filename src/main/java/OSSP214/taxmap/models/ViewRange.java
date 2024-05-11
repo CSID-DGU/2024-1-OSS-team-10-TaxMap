@@ -10,4 +10,5 @@ public class ViewRange {
     private double maxLat;
     private double minLng;
     private double maxLng;
+    private String govOfficeFilter;
 }
