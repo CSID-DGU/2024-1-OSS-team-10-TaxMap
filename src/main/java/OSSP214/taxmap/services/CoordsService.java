@@ -31,9 +31,11 @@ public class CoordsService {
     }
 
     public List<Coords> getByViewRange(ViewRange viewRange) {
-        return coordsRepository.findAllByLatitudeBetweenAndLongitudeBetween(viewRange.getMinLat(),
-                                                                            viewRange.getMaxLat(),
-                                                                            viewRange.getMinLng(),
-                                                                            viewRange.getMaxLng());
+
+        return coordsRepository.findAllByLatitudeBetweenAndLongitudeBetween(
+                viewRange.getMinLat(),
+                viewRange.getMaxLat(),
+                viewRange.getMinLng(),
+                viewRange.getMaxLng());
     }
 }

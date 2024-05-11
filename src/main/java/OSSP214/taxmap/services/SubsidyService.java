@@ -23,4 +23,6 @@ public class SubsidyService {
     public Optional<Subsidy> getById(Long id) {
         return subsidyRepository.findById(id);
     }
+
+    public List<String> getGovOfficeList() { return subsidyRepository.getDistinctGovOffice(); }
 }
