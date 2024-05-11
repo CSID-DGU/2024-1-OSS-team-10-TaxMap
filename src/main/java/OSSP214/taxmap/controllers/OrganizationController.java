@@ -4,15 +4,12 @@ package OSSP214.taxmap.controllers;
 import OSSP214.taxmap.models.Organization;
 import OSSP214.taxmap.models.OrganizationDTO;
 import OSSP214.taxmap.services.OrganizationService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/org")
+@RequestMapping(path = "/api/org")
 public class OrganizationController {
 
     private final OrganizationService organizationService;

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/subsidy")
+@RequestMapping(path = "/api/subsidy")
 public class SubsidyController {
     private final SubsidyService subsidyService;
 

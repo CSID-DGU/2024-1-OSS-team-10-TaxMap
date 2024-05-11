@@ -7,9 +7,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
 @RestController
-@RequestMapping(path = "/map")
+@RequestMapping(path = "/api/map")
 public class CoordsController {
     private final CoordsService coordsService;
 
@@ -19,7 +18,7 @@ public class CoordsController {
 
 
     // ViewRange 안에 있는 마커들 검색
-    @GetMapping(path = "/view")
+    @PostMapping(path = "/view")
     public List<CoordsDTO> getMarkers(@RequestBody ViewRange viewRange) {
         return coordsService.getByViewRange(viewRange).stream()
                 .map(CoordsDTO::new)
