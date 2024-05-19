@@ -13,6 +13,7 @@ import com.poiji.bind.Poiji;
 import com.poiji.option.PoijiOptions;
 import jakarta.transaction.Transactional;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.ss.usermodel.*;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
@@ -50,6 +51,7 @@ class ResponseDTO {
 
 // 서버 부팅시 수행할 행동 정의
 // 클래스가 좀 방대해서 service 위의 service class로 구현하는 것도?
+@Slf4j
 @Component
 public class StartupBehaviour {
     private final SubsidyRepository subsidyRepository;
@@ -74,7 +76,6 @@ public class StartupBehaviour {
     @EventListener(ContextRefreshedEvent.class)
     public void onStartup() {
         // db 구성 완료 시 호출 안하도록 기능 구현해야 함
-
         //loadSubsidyData("c:/db/bojo2022.xlsx");
         //loadBusinessData("c:/db/bojo_srv.xlsx");
         //initOrganizations();
@@ -83,11 +84,12 @@ public class StartupBehaviour {
 
     // xlsx 파일에서 시트, 행 순회하며 subsidy 데이터 받아오기
     public void loadSubsidyData(String fileName) {
+        log.info("Loading subsidy data...");
+
         File file = new File(fileName);
         try (Workbook wb = WorkbookFactory.create(file)) {
-            // 첫 번쨰 sheet 건너뜀
-            for (int i = 1; i <= wb.getNumberOfSheets(); i++) {
             for (int i = 0; i < wb.getNumberOfSheets(); i++) {
+                log.info("Loading from sheet: {}", wb.getSheetName(i));
                 // 각 sheet마다
                 PoijiOptions options = PoijiOptions.PoijiOptionsBuilder.settings()
                         .sheetIndex(i)
@@ -98,6 +100,8 @@ public class StartupBehaviour {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+        log.info("Loading subsidy data complete.");
     }
 
     public void loadBusinessData(String fileName) {
@@ -118,6 +122,7 @@ public class StartupBehaviour {
     // subsidy에서 기업 정보 추출 후 organization과 연결
     @Transactional
     public void initOrganizations() {
+        log.info("Constructing organization info...");
 
         List<Subsidy> subsidies = subsidyRepository.findAll();
         Map<String, Organization> organizations = new HashMap<>();
@@ -140,10 +145,13 @@ public class StartupBehaviour {
             organization.getSubsidies().add(subsidy);
         }
         organizationRepository.saveAll(organizations.values());
+
+        log.info("Constructing organization info complete.");
     }
 
     @Transactional
     public void initCoordinates() {
+        log.info("Constructing coords info...");
 
         // 각 Organization마다 Kakao map REST API 호출로 좌표를 받아온다
         // 그 뒤 CoordsRepository에 좌표로 검색 후, 없으면 신규생성
@@ -159,13 +167,11 @@ public class StartupBehaviour {
         Map<String, Coords> coordsMap = new HashMap<>();
 
         for (Organization organization : organizations) {
-            try {
-                // 카카오 API 요청
-                response = restTemplate.exchange(
             Coords coords = coordsMap.get(organization.getAddress());
 
             if (coords == null) {
                 try {
+                    log.debug("Requesting coords for address: {}", organization.getAddress());
                     response = restTemplate.exchange(
                         "/address?query=" + organization.getAddress(),
                         HttpMethod.GET,
@@ -173,10 +179,10 @@ public class StartupBehaviour {
                         ResponseDTO.class
                     );
 
-                // response 처리
                     // 한꺼번에 많은 요청 보내지 않도록 sleep
                     sleep(50);
                 } catch (InterruptedException | RestClientException e) {
+                    log.warn(e.getMessage());
                     continue;
                 }
 
@@ -201,5 +207,7 @@ public class StartupBehaviour {
             coords.getOrganizations().add(organization);
         }
         coordsRepository.saveAll(coordsMap.values());
+
+        log.info("Constructing coords info complete.");
     }
 }
