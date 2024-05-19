@@ -12,6 +12,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(indexes = @Index(name = "org_name_index", columnList = "org_name"))
 public class Organization {
 
     @Id
@@ -21,7 +22,6 @@ public class Organization {
     private String orgName;
 
     @ManyToOne
-
     @JoinColumn
     private Coords coordsInfo;
 

@@ -11,4 +11,9 @@ public class ViewRange {
     private double minLng;
     private double maxLng;
     private String govOfficeFilter;
+
+    @Override
+    public String toString() {
+        return "Lat: " + minLat + "~" + maxLat + " Lng: " + minLng + "~" + maxLng + ", filter: " + govOfficeFilter;
+    }
 }
