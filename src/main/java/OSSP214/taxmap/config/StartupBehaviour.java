@@ -21,12 +21,14 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -85,6 +87,7 @@ public class StartupBehaviour {
         try (Workbook wb = WorkbookFactory.create(file)) {
             // 첫 번쨰 sheet 건너뜀
             for (int i = 1; i <= wb.getNumberOfSheets(); i++) {
+            for (int i = 0; i < wb.getNumberOfSheets(); i++) {
                 // 각 sheet마다
                 PoijiOptions options = PoijiOptions.PoijiOptionsBuilder.settings()
                         .sheetIndex(i)
@@ -117,23 +120,26 @@ public class StartupBehaviour {
     public void initOrganizations() {
 
         List<Subsidy> subsidies = subsidyRepository.findAll();
+        Map<String, Organization> organizations = new HashMap<>();
         for (Subsidy subsidy : subsidies) {
             // 기업 이름으로 organization repo 검색, 없으면 새로 생성
-            Organization organization = organizationRepository.findByOrgName(subsidy.getOrgName()).orElseGet(() ->
-                    Organization.builder()
-                            .subsidies(new ArrayList<>())
-                            .orgName(subsidy.getOrgName())
-                            .representativeName(subsidy.getRepresentativeName())
-                            .phoneNumber(subsidy.getPhoneNumber())
-                            .address(subsidy.getAddress())
-                            .build());
-
+            Organization organization = organizations.get(subsidy.getOrgName());
+            if (organization == null) {
+                organization = Organization.builder()
+                        .subsidies(new ArrayList<>())
+                        .orgName(subsidy.getOrgName())
+                        .representativeName(subsidy.getRepresentativeName())
+                        .phoneNumber(subsidy.getPhoneNumber())
+                        .address(subsidy.getAddress())
+                        .build();
+                organizations.put(organization.getOrgName(), organization);
+            }
             // subsidy와 organization 관계 설정 후 저장
             subsidy.setOrgInfo(organization);
             subsidyRepository.save(subsidy);
             organization.getSubsidies().add(subsidy);
-            organizationRepository.save(organization);
         }
+        organizationRepository.saveAll(organizations.values());
     }
 
     @Transactional
@@ -150,48 +156,50 @@ public class StartupBehaviour {
 
         // 주소 존재하는 organization만 받아옴
         List<Organization> organizations = organizationRepository.findAllByAddressNotNull();
+        Map<String, Coords> coordsMap = new HashMap<>();
+
         for (Organization organization : organizations) {
             try {
                 // 카카오 API 요청
                 response = restTemplate.exchange(
+            Coords coords = coordsMap.get(organization.getAddress());
+
+            if (coords == null) {
+                try {
+                    response = restTemplate.exchange(
                         "/address?query=" + organization.getAddress(),
                         HttpMethod.GET,
                         request,
                         ResponseDTO.class
-                );
+                    );
 
                 // response 처리
+                    // 한꺼번에 많은 요청 보내지 않도록 sleep
+                    sleep(50);
+                } catch (InterruptedException | RestClientException e) {
+                    continue;
+                }
+
                 ResponseDTO responseDTO = response.getBody();
                 if (responseDTO != null) {
                     double latitude = Double.parseDouble(responseDTO.getLat());
                     double longitude = Double.parseDouble(responseDTO.getLng());
 
-                    // 좌표로 coords repo 검색, 없으면 생성
-                    Coords coords = coordsRepository.findByLatitudeAndLongitude(latitude, longitude).orElseGet(() ->
-                            Coords.builder()
+                    coords = Coords.builder()
                             .latitude(latitude)
                             .longitude(longitude)
                             .address(organization.getAddress())
                             .organizations(new ArrayList<>())
-                            .build()
-                    );
-
-                    // organization과 coords 관계 설정 후 저장
-                    organization.setCoordsInfo(coords);
-                    organizationRepository.save(organization);
-                    coords.getOrganizations().add(organization);
-                    coordsRepository.save(coords);
+                            .build();
+                    coordsMap.put(coords.getAddress(), coords);
                 } else throw (new RuntimeException("Response DTO from Kakao API is empty: address=" + organization.getAddress()));
-
-                // 한번에 너무 많은 요청 보내지 않도록 delay
-                sleep(100);
-
-            // exception handler로 관리하는 방향으로..
-            } catch (InterruptedException e) {
-                System.out.println("Sleep interrupted");
-            } catch (RuntimeException e) {
-                System.out.println(e.getMessage());
             }
+
+            // organization과 coords 관계 설정 후 저장
+            organization.setCoordsInfo(coords);
+            organizationRepository.save(organization);
+            coords.getOrganizations().add(organization);
         }
+        coordsRepository.saveAll(coordsMap.values());
     }
 }

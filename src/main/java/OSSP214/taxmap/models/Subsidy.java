@@ -1,7 +1,7 @@
 package OSSP214.taxmap.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.poiji.annotation.ExcelCell;
+import com.poiji.annotation.ExcelCellName;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -20,16 +20,16 @@ public class Subsidy {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ExcelCell(1)
+    @ExcelCellName("중앙관서")
     private String govOffice;
 
-    @ExcelCell(2)
+    @ExcelCellName("회계연도")
     private String financialYear;
 
-    @ExcelCell(3)
+    @ExcelCellName("사업연도")
     private String businessYear;
 
-    @ExcelCell(4)
+    @ExcelCellName("사업명")
     private String businessName;
 
     @ManyToOne
@@ -37,86 +37,86 @@ public class Subsidy {
     @JsonIgnore
     private Organization orgInfo;
 
-    @ExcelCell(5)
+    @ExcelCellName("기관명")
     private String orgName;
 
-    @ExcelCell(6)
+    @ExcelCellName("대표자명")
     private String representativeName;
 
-    @ExcelCell(7)
+    @ExcelCellName("전화번호")
     private String phoneNumber;
 
-    @ExcelCell(8)
+    @ExcelCellName("소재지")
     private String address;
 
-    @ExcelCell(9)
+    @ExcelCellName("총사업비")
     private long totalBusinessExpense;
 
-    @ExcelCell(10)
+    @ExcelCellName("국고보조금")
     private long govExpense;
 
-    @ExcelCell(11)
+    @ExcelCellName("지자체부담금")
     private long localExpense;
 
-    @ExcelCell(12)
+    @ExcelCellName("자기부담금")
     private long selfExpense;
 
-    @ExcelCell(13)
+    @ExcelCellName("교부신청액")
     private String requestedSubsidy;
 
-    @ExcelCell(14)
+    @ExcelCellName("국고보조금")
     private long govBudget;
 
-    @ExcelCell(15)
+    @ExcelCellName("지자체부담금")
     private long localBudget;
 
-    @ExcelCell(16)
+    @ExcelCellName("신청교부")
     private long requestedPaid;
 
-    @ExcelCell(17)
+    @ExcelCellName("직권교부")
     private long authorityPaid;
 
-    @ExcelCell(18)
+    @ExcelCellName("사업목적")
     @Column(columnDefinition = "TEXT")
     private String businessPurpose;
 
-    @ExcelCell(19)
+    @ExcelCellName("사업내용")
     @Column(columnDefinition = "TEXT")
     private String businessDescription;
 
-    @ExcelCell(20)
+    @ExcelCellName("사업기간")
     @Column(columnDefinition = "TEXT")
     private String businessDuration;
 
-    @ExcelCell(21)
+    @ExcelCellName("사업장소")
     @Column(columnDefinition = "TEXT")
     private String businessLocation;
 
-    @ExcelCell(22)
+    @ExcelCellName("대상자수")
     @Column(columnDefinition = "TEXT")
     private String subjectNumber;
 
-    @ExcelCell(23)
+    @ExcelCellName("보조금 이외의 경비부담내용")
     @Column(columnDefinition = "TEXT")
     private String miscExpense;
 
-    @ExcelCell(24)
+    @ExcelCellName("수익금액의 처리방법")
     @Column(columnDefinition = "TEXT")
     private String proceedsProcessMethod;
 
-    @ExcelCell(25)
+    @ExcelCellName("신청자의 자산/부채")
     @Column(columnDefinition = "TEXT")
     private String applierAsset;
 
-    @ExcelCell(26)
+    @ExcelCellName("기대효과")
     @Column(columnDefinition = "TEXT")
     private String expectedBenefit;
 
-    @ExcelCell(27)
+    @ExcelCellName("성과목표")
     @Column(columnDefinition = "TEXT")
     private String performanceGoal;
 
-    @ExcelCell(28)
+    @ExcelCellName("고려사항")
     @Column(columnDefinition = "TEXT")
     private String considerations;
 }

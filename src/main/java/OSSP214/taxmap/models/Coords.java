@@ -12,6 +12,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(indexes = @Index(name = "coords_index", columnList = "latitude, longitude, address"))
 public class Coords {
 
     @Id
