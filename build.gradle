@@ -25,6 +25,7 @@ dependencies {
 	// CVE-2024-26308, Score: 7.5
 	// CVE-2024-25710, Score: 5.5
 	implementation 'com.github.ozlerhakan:poiji:4.4.0'
+	implementation 'org.slf4j:slf4j-api:2.0.13'
 	annotationProcessor('org.projectlombok:lombok')
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'com.mysql:mysql-connector-j'
