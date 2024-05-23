@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.poiji.annotation.ExcelCellName;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 
 
 // 보조금 정보, column이 다 varchar(255)라서 정리 필요
@@ -119,4 +120,10 @@ public class Subsidy {
     @ExcelCellName("고려사항")
     @Column(columnDefinition = "TEXT")
     private String considerations;
+
+    @ColumnDefault("0")
+    private int likes;
+
+    @ColumnDefault("0")
+    private int dislikes;
 }
