@@ -81,3 +81,7 @@
 .department-mode:hover {
   color: #8371de; /* 마우스 오버시 텍스트 색상 변경 */
 }
+
+.nav-item p:hover {
+  color: #8371de; /* 마우스 오버시 텍스트 색상 변경 */
+}

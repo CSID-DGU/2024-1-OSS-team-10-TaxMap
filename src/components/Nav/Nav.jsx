@@ -24,20 +24,49 @@ function Nav() {
             </NavLink>
             {hoveredItem === "service" && (
               <div className="dropdown-content" style={{ display: "grid" }}>
-                <p>행정 / 통일 / 외교</p>
-                <p>사회복지향상</p>
-                <p>국토개발지원</p>
-                <p>안정보장</p>
-                <p>보훈향상</p>
-                <p>교통 / 물류진흥</p>
-                <p>교육 보장</p>
-                <p>고용안정</p>
-                <p>방송 / 통신진흥</p>
-                <p>문화활동</p>
-                <p>주거안정</p>
-                <p>과학기술진흥</p>
-                <p>관광 / 휴양활동</p>
-                <p> 보건 / 의료</p>
+                <a href="" alt="">
+                  행정 / 통일 / 외교
+                </a>
+                <a href="" alt="">
+                  사회복지향상
+                </a>
+                <a href="" alt="">
+                  국토개발지원
+                </a>
+                <a href="" alt="">
+                  안정보장
+                </a>
+                <a href="" alt="">
+                  보훈향상
+                </a>
+                <a href="" alt="">
+                  교통 / 물류진흥
+                </a>
+                <a href="" alt="">
+                  교육 보장
+                </a>
+                <a href="" alt="">
+                  고용안정
+                </a>
+                <a href="" alt="">
+                  방송 / 통신진흥
+                </a>
+                <a href="" alt="">
+                  문화활동
+                </a>
+                <a href="" alt="">
+                  주거안정
+                </a>
+                <a href="" alt="">
+                  과학기술진흥
+                </a>
+                <a href="" alt="">
+                  관광 / 휴양활동
+                </a>
+                <a href="" alt="">
+                  {" "}
+                  보건 / 의료
+                </a>
               </div>
             )}
           </div>
