@@ -3,10 +3,8 @@ package OSSP214.taxmap.controllers;
 import OSSP214.taxmap.models.Subsidy;
 import OSSP214.taxmap.models.SubsidyDTO;
 import OSSP214.taxmap.services.SubsidyService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -39,5 +37,17 @@ public class SubsidyController {
     @GetMapping(path = "/{id}")
     public Subsidy one(@PathVariable Long id) {
         return subsidyService.getById(id).orElseThrow();
+    }
+
+    @PostMapping(path = "/like/{id}")
+    public ResponseEntity<String> like(@PathVariable Long id) {
+        subsidyService.like(id);
+        return ResponseEntity.ok().body("좋아요");
+    }
+
+    @PostMapping(path = "/dislike/{id}")
+    public ResponseEntity<String> dislike(@PathVariable Long id) {
+        subsidyService.dislike(id);
+        return ResponseEntity.ok().body("싫어요");
     }
 }
