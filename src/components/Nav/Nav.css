@@ -82,6 +82,19 @@
   color: #8371de; /* 마우스 오버시 텍스트 색상 변경 */
 }
 
+.nav-item a {
+  text-decoration: none;
+  color: #000000;
+  margin: 10px;
+}
+
 .nav-item p:hover {
-  color: #8371de; /* 마우스 오버시 텍스트 색상 변경 */
+  color: #8371de;
+}
+
+.nav-item a:hover {
+  color: #8371de;
+}
+.nav-item:hover .dropdown-content {
+  display: grid; /* 마우스 오버 시 보이도록 설정 */
 }
