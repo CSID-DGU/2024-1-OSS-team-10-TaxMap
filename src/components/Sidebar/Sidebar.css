@@ -42,8 +42,9 @@
 }
 
 .organization-intro,
-.tax-expenditure {
-  margin-top: 20px;
+.tax-expenditure,
+.sharing-opinion {
+  margin-top: 30px;
   color: #000;
   font-family: NanumSquare;
   font-size: 18px;
@@ -69,16 +70,48 @@
   letter-spacing: 2px;
 }
 
-.separator-subsidy-info {
+.separator {
   width: 320px;
   height: 1px;
   background: #eaeaea;
   margin: 20px 0; /* 구분선 위아래로 간격 */
 }
 
-.separator {
-  width: 562px;
-  height: 1px;
-  background: #eaeaea;
-  margin: 20px 0; /* 구분선 위아래로 간격 */
+.like-btn,
+.dislike-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: #4d4d4d;
+  font-family: NanumSquare;
+  font-size: 16px;
+  font-weight: 500;
+  outline: none; /* 버튼 테두리 제거 */
+  transition: transform 0.1s ease, filter 0.1s ease; /* 클릭 시 트랜지션 효과 */
+}
+
+.like-btn img,
+.dislike-btn img {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 5px;
+}
+
+.like-btn:hover img,
+.dislike-btn:hover img {
+  filter: brightness(1.2); /* 호버 시 이미지 밝기 증가 */
+}
+
+.like-btn:active img,
+.dislike-btn:active img {
+  transform: scale(0.95); /* 클릭 시 이미지 크기 축소 */
+}
+
+.opinion-container {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
 }
