@@ -38,10 +38,14 @@ const Sidebar = ({ marker, onClose }) => {
           {marker.organizations.map((org, index) => (
             <div key={index} className="organization-detail">
               <div className="organization-name">{org.name}</div>
-              <div className="organization-intro"> 사업을 소개합니다 </div>
+
               {org.subsidies && org.subsidies.length > 0 ? (
                 org.subsidies.map((subsidy, subIndex) => (
                   <div key={subIndex} className="subsidy-detail">
+                    <div className="organization-intro">
+                      {" "}
+                      [{subIndex + 1}] 사업을 소개합니다{" "}
+                    </div>
                     <p>
                       사업명: <b>{subsidy.businessName || "정보 없음"}</b>
                     </p>
@@ -51,7 +55,7 @@ const Sidebar = ({ marker, onClose }) => {
                     <p>
                       사업연도: <b>{subsidy.businessYear || "정보 없음"}</b>
                     </p>
-                    <h3>사용 내역</h3>
+                    <div className="tax-expenditure">사용 내역</div>
                     <p>
                       총 사업비:{" "}
                       <b>
@@ -137,6 +141,7 @@ const Sidebar = ({ marker, onClose }) => {
                           사업 설명:{" "}
                           <b>{subsidy.businessDescription || "정보 없음"}</b>
                         </p>
+                        <div className="separator-subsidy-info"></div>
                       </div>
                     )}
                     {/* <div>
@@ -149,6 +154,9 @@ const Sidebar = ({ marker, onClose }) => {
                 ))
               ) : (
                 <p>해당 조직에 대한 보조금 정보가 없습니다.</p>
+              )}
+              {index < marker.organizations.length - 1 && (
+                <div className="seperator"></div>
               )}
             </div>
           ))}

@@ -41,7 +41,8 @@
   letter-spacing: 2px;
 }
 
-.organization-intro {
+.organization-intro,
+.tax-expenditure {
   margin-top: 20px;
   color: #000;
   font-family: NanumSquare;
@@ -53,7 +54,7 @@
 }
 
 .subsidy-toggle-btn {
-  width: 150px;
+  width: 165x;
   height: 30px;
   flex-shrink: 0;
   border-radius: 10px;
@@ -65,4 +66,19 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  letter-spacing: 2px;
+}
+
+.separator-subsidy-info {
+  width: 320px;
+  height: 1px;
+  background: #eaeaea;
+  margin: 20px 0; /* 구분선 위아래로 간격 */
+}
+
+.separator {
+  width: 562px;
+  height: 1px;
+  background: #eaeaea;
+  margin: 20px 0; /* 구분선 위아래로 간격 */
 }
