@@ -24,7 +24,7 @@ public class OrganizationDTO {
         this.subsidies = org.getSubsidies().stream()
                 .map(SubsidyDTO::new)
                 .toList();
-         this.totalReceivedSubsidy = subsidies.stream()
+        this.totalReceivedSubsidy = subsidies.stream()
                 .mapToLong(SubsidyDTO::getReceivedSubsidy).sum();
     }
 }

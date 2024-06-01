@@ -28,10 +28,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static java.lang.Thread.sleep;
 
@@ -80,6 +77,13 @@ public class StartupBehaviour {
         //loadBusinessData("c:/db/bojo_srv.xlsx");
         //initOrganizations();
         //initCoordinates();
+
+//        Random random = new Random();
+//        String[] category = {"행정/통일/외교", "안전 보장", "교육 보장", "문화활동", "사회복지향상", "보훈향상", "고용안정", "주거안정", "국토개발지원", "교통/물류진흥", "방송/통신진흥", "과학기술진흥", "관광/휴양활동", "종교활동", "환경향상", "보건/의료", "1차 산업지원", "산업/에너지자원"};
+//        for (Subsidy subsidy : subsidyRepository.findAll()) {
+//            subsidy.setServiceCategory(category[random.nextInt(category.length)]);
+//            subsidyRepository.save(subsidy);
+//        }
     }
 
     // xlsx 파일에서 시트, 행 순회하며 subsidy 데이터 받아오기

@@ -7,8 +7,6 @@ import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 
 
-// 보조금 정보, column이 다 varchar(255)라서 정리 필요
-// 셀 번호로 하는게 맞나?
 @Entity
 @Getter
 @Setter
@@ -120,6 +118,10 @@ public class Subsidy {
     @ExcelCellName("고려사항")
     @Column(columnDefinition = "TEXT")
     private String considerations;
+
+    private String serviceCategory;
+
+    private String BusinessSummary;
 
     @ColumnDefault("0")
     private int likes;

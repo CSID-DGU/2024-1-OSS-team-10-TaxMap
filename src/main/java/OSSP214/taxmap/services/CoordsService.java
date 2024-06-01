@@ -58,6 +58,19 @@ public class CoordsService {
             }
             coordsList.removeIf(coords -> coords.getOrganizations().isEmpty());
         }
+
+        if (viewRange.getServiceCategoryFilter() != null) {
+            for (Coords coords : coordsList) {
+                List<Organization> organizations = coords.getOrganizations();
+                for (Organization organization : organizations) {
+                    List<Subsidy> subsidies = organization.getSubsidies();
+                    subsidies.removeIf(subsidy -> !subsidy.getServiceCategory().equals(viewRange.getServiceCategoryFilter()));
+                }
+                organizations.removeIf(organization -> organization.getSubsidies().isEmpty());
+            }
+            coordsList.removeIf(coords -> coords.getOrganizations().isEmpty());
+        }
+
         long filterTime = System.currentTimeMillis();
         log.info("query time: {}ms, filter time: {}ms", queryTime - startingTime, filterTime - queryTime);
 
