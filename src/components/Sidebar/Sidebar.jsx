@@ -12,8 +12,11 @@ const Sidebar = ({ marker, onClose }) => {
   // 좋아요 증가 함수
   const handleLike = async (id) => {
     try {
-      const updatedLikes = (likes[id] || 0) + 1;
-      setLikes((prev) => ({ ...prev, [id]: updatedLikes }));
+      const updatedLikes = (subsidyDetails[id]?.likes || 0) + 1; // 서버로부터 가져온 likes를 사용
+      setSubsidyDetails((prev) => ({
+        ...prev,
+        [id]: { ...prev[id], likes: updatedLikes },
+      })); // subsidyDetails 상태 업데이트
       await fetch(`${process.env.REACT_APP_API_URL}/api/subsidy/like/${id}`, {
         method: "POST",
         headers: {
@@ -21,7 +24,7 @@ const Sidebar = ({ marker, onClose }) => {
         },
         body: JSON.stringify({
           likes: updatedLikes,
-          dislikes: dislikes[id] || 0,
+          dislikes: subsidyDetails[id]?.dislikes || 0, // 서버로부터 가져온 dislikes를 사용
         }),
       });
     } catch (error) {
@@ -32,8 +35,11 @@ const Sidebar = ({ marker, onClose }) => {
   // 나빠요 증가 함수
   const handleDislike = async (id) => {
     try {
-      const updatedDislikes = (dislikes[id] || 0) + 1;
-      setDislikes((prev) => ({ ...prev, [id]: updatedDislikes }));
+      const updatedDislikes = (subsidyDetails[id]?.dislikes || 0) + 1; // 서버로부터 가져온 dislikes를 사용
+      setSubsidyDetails((prev) => ({
+        ...prev,
+        [id]: { ...prev[id], dislikes: updatedDislikes },
+      })); // subsidyDetails 상태 업데이트
       await fetch(
         `${process.env.REACT_APP_API_URL}/api/subsidy/dislike/${id}`,
         {
@@ -42,7 +48,7 @@ const Sidebar = ({ marker, onClose }) => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            likes: likes[id] || 0,
+            likes: subsidyDetails[id]?.likes || 0, // 서버로부터 가져온 likes를 사용
             dislikes: updatedDislikes,
           }),
         }
@@ -242,7 +248,7 @@ const Sidebar = ({ marker, onClose }) => {
                         >
                           <img src={btnLike} alt="like" />
                           <span>좋아요</span>
-                          <span>{likes[subsidy.id] || 0}</span>
+                          <span>{subsidyDetails[subsidy.id].likes || 0}</span>
                         </button>
                         <button
                           className="dislike-btn"
@@ -250,17 +256,13 @@ const Sidebar = ({ marker, onClose }) => {
                         >
                           <img src={btnDislike} alt="dislike" />
                           <span>나빠요</span>
-                          <span>{dislikes[subsidy.id] || 0}</span>
+                          <span>
+                            {subsidyDetails[subsidy.id].dislikes || 0}
+                          </span>
                         </button>
                       </div>
                     )}
                     <div className="separator"></div>
-                    {/* <div>
-                      사업 기간: {subsidy.businessDuration || "정보 없음"}
-                    </div>
-                    <div>
-                      사업 위치: {subsidy.businessLocation || "정보 없음"}
-                    </div> */}
                   </div>
                 ))
               ) : (
