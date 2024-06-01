@@ -2,7 +2,9 @@ package OSSP214.taxmap.controllers;
 
 import OSSP214.taxmap.models.Subsidy;
 import OSSP214.taxmap.models.SubsidyDTO;
+import OSSP214.taxmap.models.SubsidyDetailsDTO;
 import OSSP214.taxmap.services.SubsidyService;
+import OSSP214.taxmap.services.SubsidyBusinessService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,9 +14,11 @@ import java.util.List;
 @RequestMapping(path = "/api/subsidy")
 public class SubsidyController {
     private final SubsidyService subsidyService;
+    private final SubsidyBusinessService subsidyBusinessService;
 
-    public SubsidyController(SubsidyService subsidyService) {
+    public SubsidyController(SubsidyService subsidyService, SubsidyBusinessService subsidybusinessService) {
         this.subsidyService = subsidyService;
+        this.subsidyBusinessService = subsidybusinessService;
     }
 
     // 보조금 정보에 존재하는 중앙부처 list 받아오기
@@ -35,8 +39,10 @@ public class SubsidyController {
 
     // 보조금 id로 검색
     @GetMapping(path = "/{id}")
-    public Subsidy one(@PathVariable Long id) {
-        return subsidyService.getById(id).orElseThrow();
+    public SubsidyDetailsDTO one(@PathVariable Long id) {
+        SubsidyDetailsDTO dto = new SubsidyDetailsDTO(subsidyService.getById(id).orElseThrow());
+        dto.setRelatedSubsidyBusinesses(subsidyBusinessService.getTwoRandomName(dto.getServiceCategory()));
+        return dto;
     }
 
     @PostMapping(path = "/like/{id}")
