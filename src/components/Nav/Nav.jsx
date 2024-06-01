@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./Nav.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import taxMapLogo from "../../assets/images/taxmap-official-logo.png";
 import { getDepartments } from "../../services/departmentService"; // 부처별 모드 요소
 
 function Nav() {
+  const navigate = useNavigate();
   // 카테고리 요소에 마우스 hover 시 보이는 세부 내용
   const [hoveredItem, setHoveredItem] = useState("");
   const [departments, setDepartments] = useState([]); // 부처별 모드 요소 로딩
@@ -30,6 +31,9 @@ function Nav() {
     }
   }, [hoveredItem]);
 
+  const handleDepartmentClick = (department) => {
+    navigate(`/map/department?category=${department}`);
+  };
   return (
     <div>
       {/* NavBar*/}
@@ -138,6 +142,7 @@ function Nav() {
                   departments.map((department, index) => (
                     <NavLink
                       key={index}
+                      className="dropdown-item"
                       to={{
                         pathname: "/map/department",
                         search: `?category=${department}`,

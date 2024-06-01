@@ -1,50 +1,36 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./MapContent.css";
-import { fetchBoundaryOrganizations } from "../../services/suggestionService"; // 백엔드 API 호출
 import Sidebar from "../Sidebar/Sidebar";
 
 function MapContent({ coordinates }) {
-  // 사용자가 선택한 장소의 좌표를 props로 받아옴
-  const mapContainerRef = useRef(null); // DOM에 접근하기 위한 ref 객체 생성
-
-  // 마커 데이터 저장 (데모)
+  const mapContainerRef = useRef(null);
   const [markers, setMarkers] = useState([]);
-
-  // 선택된 마커의 정보를 사이드바에 출력 목적
   const [selectedMarker, setSelectedMarker] = useState(null);
 
-  // 사이드 바 닫기
   const closeSidebar = () => {
     setSelectedMarker(null);
   };
 
   useEffect(() => {
-    // 스크립트 로드 후 kakao.map 객체 접근 및 지도 로드, autofalse로 자동 로드 방지
     const script = document.createElement("script");
     script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.REACT_APP_KAKAO_MAP_API_KEY}&autoload=false`;
-    document.head.appendChild(script); // index.html의 script에 추가되는 것인가?
+    document.head.appendChild(script);
 
     script.onload = () => {
       window.kakao.maps.load(() => {
-        // 입력값 없을 경우, 기본 값으로 '동국대 신공학관'  위도 경도에 좌표 표시
-
         const options = {
           center: new window.kakao.maps.LatLng(
-            coordinates ? coordinates.lat : 37.55805491922956, // 사용자 선택 좌표 : 디폴트 좌표(신공학관)
+            coordinates ? coordinates.lat : 37.55805491922956,
             coordinates ? coordinates.lng : 126.99832780535394
           ),
           level: 4,
         };
-        // ref 객체로 DOM 요소에 접근하여 지도 생성
         const map = new window.kakao.maps.Map(mapContainerRef.current, options);
 
-        // 지도 이벤트 리스너 : 사용자의 지도 이동이 끝날 때마다 경계 정보를 백엔드에게 전송
         window.kakao.maps.event.addListener(map, "bounds_changed", async () => {
           const bounds = map.getBounds();
           const swLatLng = bounds.getSouthWest();
           const neLatLng = bounds.getNorthEast();
-
-          // URL 쿼리 문자열을 사용하여 경계 정보 전송 - POST
 
           try {
             const response = await fetch(
@@ -64,9 +50,7 @@ function MapContent({ coordinates }) {
             );
             if (response.ok) {
               const data = await response.json();
-              setMarkers(data); // 마커 데이터 저장
-              // 이전 마커 삭제 로직 추가 필요
-              // 지도에 마커 추가
+              setMarkers(data);
               data.forEach((markerData) => {
                 const marker = new window.kakao.maps.Marker({
                   map: map,
@@ -74,13 +58,44 @@ function MapContent({ coordinates }) {
                     markerData.latitude,
                     markerData.longitude
                   ),
-                  title: markerData.address, // 추가정보 표시 :주소
+                  title: markerData.address,
                 });
 
-                // 마커 클릭 이벤트 핸들러
-                window.kakao.maps.event.addListener(marker, "click", () => {
-                  setSelectedMarker(markerData); // 클릭된 마커 정보 저장
-                });
+                window.kakao.maps.event.addListener(
+                  marker,
+                  "click",
+                  async () => {
+                    console.log("Marker Data:", markerData);
+
+                    const orgSubsidies = await Promise.all(
+                      markerData.organizations.map(async (org) => {
+                        const subsidyPromises = org.subsidies.map(
+                          async (sub) => {
+                            const subsidyResponse = await fetch(
+                              `${process.env.REACT_APP_API_URL}/api/subsidy/${sub.id}`
+                            );
+                            if (subsidyResponse.ok) {
+                              return await subsidyResponse.json();
+                            } else {
+                              throw new Error(
+                                "Failed to fetch subsidy details"
+                              );
+                            }
+                          }
+                        );
+                        return {
+                          ...org,
+                          subsidies: await Promise.all(subsidyPromises),
+                        };
+                      })
+                    );
+
+                    setSelectedMarker({
+                      ...markerData,
+                      organizations: orgSubsidies,
+                    });
+                  }
+                );
               });
             } else {
               throw new Error("Failed to fetch markers");
