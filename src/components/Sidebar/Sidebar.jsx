@@ -69,8 +69,7 @@ const Sidebar = ({ marker, onClose }) => {
       if (response.ok) {
         const data = await response.json();
         setSubsidyDetails((prev) => ({ ...prev, [id]: data }));
-        console.log("Fetched Subsidy Data:", data); // 콘솔에 값 출력
-      } else {
+        console.log("Fetched Subsidy Data:", data);
         throw new Error("Failed to fetch subsidy details");
       }
     } catch (error) {
@@ -230,6 +229,23 @@ const Sidebar = ({ marker, onClose }) => {
                         </p>
                       </div>
                     )}
+                    <div className="similar-subsidy-projects">
+                      유사 보조사업
+                    </div>
+                    {subsidyDetails[subsidy.id] &&
+                      subsidyDetails[subsidy.id].relatedSubsidyBusinesses && (
+                        <p>
+                          {subsidyDetails[
+                            subsidy.id
+                          ].relatedSubsidyBusinesses.map(
+                            (related, relatedIndex) => (
+                              <p key={relatedIndex}>
+                                <b>- {related}</b>
+                              </p>
+                            )
+                          )}
+                        </p>
+                      )}
                     <div className="sharing-opinion">의견을 나눠봐요</div>
                     {subsidyDetails[subsidy.id] && (
                       <div className="opinion-container">
