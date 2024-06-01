@@ -70,6 +70,8 @@ const Sidebar = ({ marker, onClose }) => {
         const data = await response.json();
         setSubsidyDetails((prev) => ({ ...prev, [id]: data }));
         console.log("Fetched Subsidy Data:", data);
+        //throw new Error("Failed to fetch subsidy details");
+      } else {
         throw new Error("Failed to fetch subsidy details");
       }
     } catch (error) {
@@ -97,21 +99,6 @@ const Sidebar = ({ marker, onClose }) => {
       <button onClick={onClose} className="close-btn">
         ✖
       </button>
-      {/* <h2>{marker.name}</h2>
-      <div>주소 : {marker.address}</div>
-      <div>
-        총 보조금:{" "}
-        {new Intl.NumberFormat("ko-KR", {
-          style: "currency",
-          currency: "KRW",
-        }).format(marker.maxTotalSubsidy)}
-      </div>
-      <div>
-        부처:{" "}
-        {marker.govOffices && marker.govOffices.length > 0
-          ? marker.govOffices.join(", ")
-          : "정보 없음"}
-      </div> */}
       {marker.organizations && (
         <div className="organizations-container">
           {marker.organizations.map((org, index) => (
