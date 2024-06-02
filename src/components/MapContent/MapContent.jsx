@@ -24,8 +24,9 @@ function MapContent({ coordinates }) {
     script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.REACT_APP_KAKAO_MAP_API_KEY}&autoload=false`;
     document.head.appendChild(script);
 
+    // 좌표 설정 없으면 동국대 신공학관이 기본 좌표로 설정
     script.onload = () => {
-      window.kakao.maps.load(() => {
+      window.kakao.maps.load(async () => {
         const options = {
           center: new window.kakao.maps.LatLng(
             coordinates ? coordinates.lat : 37.55805491922956,
@@ -35,7 +36,7 @@ function MapContent({ coordinates }) {
         };
         const map = new window.kakao.maps.Map(mapContainerRef.current, options);
 
-        window.kakao.maps.event.addListener(map, "bounds_changed", async () => {
+        const loadMarkers = async () => {
           const bounds = map.getBounds();
           const swLatLng = bounds.getSouthWest();
           const neLatLng = bounds.getNorthEast();
@@ -72,7 +73,7 @@ function MapContent({ coordinates }) {
 
               expenses.forEach((markerData) => {
                 let markerImage;
-                //   maxTotalSubsidy 값 기준으로 마커 이미지 적용
+                // maxTotalSubsidy 값 기준으로 마커 이미지 적용
                 if (markerData.maxTotalSubsidy >= 100000000) {
                   markerImage = largest_icon;
                 } else if (markerData.maxTotalSubsidy >= 50000000) {
@@ -202,7 +203,13 @@ function MapContent({ coordinates }) {
           } catch (error) {
             console.error("Error fetching organizations within bounds:", error);
           }
-        });
+        };
+
+        // # 초기 로드 시 마커 표시
+        loadMarkers();
+
+        // # 지도가 이동될 때마다 마커를 다시 로드
+        window.kakao.maps.event.addListener(map, "bounds_changed", loadMarkers);
       });
     };
   }, [coordinates]);
