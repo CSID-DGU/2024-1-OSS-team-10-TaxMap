@@ -119,9 +119,9 @@ function MapContent({ coordinates }) {
 
                     let clickedMarkerImage;
                     // maxTotalSubsidy으로 마커 이미지 적용
-                    if (markerData.maxTotalSubsidy >= 1500000000) {
+                    if (markerData.maxTotalSubsidy >= 100000000) {
                       clickedMarkerImage = clicked_largest_icon;
-                    } else if (markerData.maxTotalSubsidy >= 70000000) {
+                    } else if (markerData.maxTotalSubsidy >= 50000000) {
                       clickedMarkerImage = clicked_middle_icon;
                     } else {
                       clickedMarkerImage = clicked_low_icon;
