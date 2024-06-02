@@ -59,19 +59,12 @@ function MapContent({ coordinates }) {
             if (response.ok) {
               const data = await response.json();
 
-              // 동일 주소의 총 사업비 합산
+              // 최대 보조금 기준으로 마커 이미지 설정 - maxTotalSubsidy
               const markerMap = {};
               data.forEach((marker) => {
                 if (!markerMap[marker.address]) {
-                  markerMap[marker.address] = {
-                    ...marker,
-                    totalExpense: 0,
-                  };
+                  markerMap[marker.address] = marker;
                 }
-                marker.organizations.forEach((org) => {
-                  markerMap[marker.address].totalExpense +=
-                    org.totalReceivedSubsidy;
-                });
               });
 
               const expenses = Object.values(markerMap);
@@ -79,9 +72,10 @@ function MapContent({ coordinates }) {
 
               expenses.forEach((markerData) => {
                 let markerImage;
-                if (markerData.totalExpense >= 1500000000) {
+                //   maxTotalSubsidy 값 기준으로 마커 이미지 적용
+                if (markerData.maxTotalSubsidy >= 100000000) {
                   markerImage = largest_icon;
-                } else if (markerData.totalExpense >= 70000000) {
+                } else if (markerData.maxTotalSubsidy >= 50000000) {
                   markerImage = middle_icon;
                 } else {
                   markerImage = low_icon;
@@ -108,9 +102,9 @@ function MapContent({ coordinates }) {
                       const { marker: prevMarker, data: prevData } =
                         clickMarker;
                       let previousMarkerImage;
-                      if (prevData.totalExpense >= 1500000000) {
+                      if (prevData.maxTotalSubsidy >= 100000000) {
                         previousMarkerImage = largest_icon;
-                      } else if (prevData.totalExpense >= 100000000) {
+                      } else if (prevData.maxTotalSubsidy >= 50000000) {
                         previousMarkerImage = middle_icon;
                       } else {
                         previousMarkerImage = low_icon;
@@ -124,14 +118,14 @@ function MapContent({ coordinates }) {
                     }
 
                     let clickedMarkerImage;
-                    if (markerData.totalExpense >= 100000000) {
+                    // maxTotalSubsidy으로 마커 이미지 적용
+                    if (markerData.maxTotalSubsidy >= 1500000000) {
                       clickedMarkerImage = clicked_largest_icon;
-                    } else if (markerData.totalExpense >= 10000000) {
+                    } else if (markerData.maxTotalSubsidy >= 70000000) {
                       clickedMarkerImage = clicked_middle_icon;
                     } else {
                       clickedMarkerImage = clicked_low_icon;
                     }
-
                     marker.setImage(
                       new window.kakao.maps.MarkerImage(
                         clickedMarkerImage,
