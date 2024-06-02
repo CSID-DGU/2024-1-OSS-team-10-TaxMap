@@ -59,7 +59,7 @@ export const fetchCoordinates = async (placeName) => {
 export const fetchBoundaryOrganizations = async (swLatLng, neLatLng) => {
   try {
     const response = await fetch(
-      `http://124.49.226.94:9999/api/organizations`,
+      `${process.env.REACT_APP_API_URL}/api/organizations`,
       {
         method: "POST",
         headers: {
