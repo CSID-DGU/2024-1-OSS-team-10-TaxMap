@@ -79,7 +79,7 @@ public class StartupBehaviour {
         //initCoordinates();
 
 //        Random random = new Random();
-//        String[] category = {"행정/통일/외교", "안전 보장", "교육 보장", "문화활동", "사회복지향상", "보훈향상", "고용안정", "주거안정", "국토개발지원", "교통/물류진흥", "방송/통신진흥", "과학기술진흥", "관광/휴양활동", "종교활동", "환경향상", "보건/의료", "1차 산업지원", "산업/에너지자원"};
+//        String[] category = {"행정통일외교", "안전 보장", "교육 보장", "문화활동", "사회복지향상", "보훈향상", "고용안정", "주거안정", "국토개발지원", "교통물류진흥", "방송통신진흥", "과학기술진흥", "관광휴양활동", "종교활동", "환경향상", "보건의료", "1차 산업지원", "산업에너지지원"};
 //        for (Subsidy subsidy : subsidyRepository.findAll()) {
 //            subsidy.setServiceCategory(category[random.nextInt(category.length)]);
 //            subsidyRepository.save(subsidy);
