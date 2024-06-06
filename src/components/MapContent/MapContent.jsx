@@ -244,18 +244,14 @@ function MapContent({ coordinates, selectedDepartment }) {
   return (
     <div className="map-content">
       {" "}
-      {/* 수정된 부분 시작 */}
       <div ref={mapContainerRef} className="map-container"></div>
       {selectedMarker && (
         <Sidebar marker={selectedMarker} onClose={closeSidebar} />
       )}
       <div className="price-range-legend">
         {" "}
-        {/* 추가된 부분 */}
         <img src={priceRangeImage} alt="Marker Price Range" />{" "}
-        {/* 추가된 부분 */}
       </div>{" "}
-      {/* 수정된 부분 끝 */}
     </div>
   );
 }
