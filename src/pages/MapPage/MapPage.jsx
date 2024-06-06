@@ -13,21 +13,29 @@ function MapPage() {
   const location = useLocation(); // 위치 정보 가져오기
 
   // url state에서 좌표 정보 추출
-  const coordinates = location.state?.coordinates;
+  const coordinates = location.state?.coordinates || {
+    lat: 37.55805491922956,
+    lng: 126.99832780535394, // 동국대 신공학관
+  };
 
   // 쿼리 스트링에서 부처 카테고리 추출
   const searchParams = new URLSearchParams(location.search);
-  const selectedDepartment = searchParams.get("category");
+  const initialDepartment = searchParams.get("category");
+
+  // 부처 선택 상태 관리
+  const [selectedDepartment, setSelectedDepartment] =
+    useState(initialDepartment);
 
   return (
     <div>
-      <Nav />
+      <Nav onDepartmentSelect={setSelectedDepartment} />
       {/*!-- 서비스 모드, 부처별 모드로 쿼리 스트링 전달하여 MapPage로 라우터 연결까지만 완료 --*/}
 
       <MapContent
         coordinates={coordinates}
         selectedDepartment={selectedDepartment}
       />
+      <Footer />
     </div>
   );
 }

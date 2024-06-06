@@ -1,5 +1,18 @@
 .map-container {
-  position: relative;
   width: 100%;
-  height: calc(100vh - 70px); /* nav 크기 빼기*/
+  height: calc(100vh - 70px); /* 전체 화면 높이  nav 크기 빼기*/
+  position: relative;
+}
+
+.price-range-legend {
+  /* 추가된 부분 시작 */
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  z-index: 1000; /* 지도 위에 오도록 높은 z-index 값 설정 */
+}
+
+.price-range-legend img {
+  width: 200px;
+  height: auto; /* 가로세로 비율 유지 */
 }

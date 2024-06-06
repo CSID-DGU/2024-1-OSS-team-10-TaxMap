@@ -4,7 +4,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import taxMapLogo from "../../assets/images/taxmap-official-logo.png";
 import { getDepartments } from "../../services/departmentService"; // 부처별 모드 요소
 
-function Nav() {
+function Nav({ onDepartmentSelect }) {
   const navigate = useNavigate();
   // 카테고리 요소에 마우스 hover 시 보이는 세부 내용
   const [hoveredItem, setHoveredItem] = useState("");
@@ -32,8 +32,16 @@ function Nav() {
   }, [hoveredItem]);
 
   const handleDepartmentClick = (department) => {
-    navigate(`/map/department?category=${department}`);
+    console.log("사용자가 선택한 부처:", department); // 선택한 부처 콘솔 출력
+    onDepartmentSelect(department); // 부처 선택 시 부모 컴포넌트의 상태를 업데이트
+    navigate("/map", {
+      state: {
+        coordinates: { lat: 37.55805491922956, lng: 126.99832780535394 },
+        department: department,
+      },
+    });
   };
+
   return (
     <div>
       {/* NavBar*/}
@@ -42,7 +50,8 @@ function Nav() {
           <img src={taxMapLogo} alt="taxMapLogo" className="taxMapLogo"></img>
         </a>
         <div className="links-container">
-          <div
+          {/** 서비스 모드 llm 으로 구분 못해 기능 제거 추후 구현 예정  */}
+          {/* <div 
             className="nav-item"
             onMouseEnter={() => setHoveredItem("service")}
             onMouseLeave={() => setHoveredItem("")}
@@ -125,7 +134,7 @@ function Nav() {
                 </NavLink>
               </div>
             )}
-          </div>
+          </div> */}
           <div
             className="nav-item"
             onMouseEnter={() => setHoveredItem("department")}
@@ -147,6 +156,7 @@ function Nav() {
                         pathname: "/map/department",
                         search: `?category=${department}`,
                       }}
+                      onClick={() => handleDepartmentClick(department)}
                     >
                       {department}
                     </NavLink>

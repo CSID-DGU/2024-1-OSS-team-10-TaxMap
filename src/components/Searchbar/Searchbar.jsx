@@ -111,7 +111,7 @@ function Searchbar() {
       </div>
       {/* 검색 제안 목록 -- css 미적용*/}
       {renderSuggestions()}
-      <div className="toggle-buttons-container">
+      {/* <div className="toggle-buttons-container">
         <button
           className={`toggle-button  ${
             searchOption === "address-building-name" ? "active" : ""
@@ -128,7 +128,7 @@ function Searchbar() {
         >
           회사명을 알아요
         </button>
-      </div>
+      </div> */}
     </div>
   );
 }
