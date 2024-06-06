@@ -116,11 +116,11 @@ const Sidebar = ({ marker, onClose }) => {
                   <div key={subIndex} className="subsidy-detail">
                     <div className="organization-intro">
                       {" "}
-                      [{subIndex + 1}] 사업을 소개합니다{" "}
+                      [{subIndex + 1}] {subsidy.businessName || "정보 없음"}{" "}
                     </div>
-                    <p>
+                    {/* <p>
                       사업명: <b>{subsidy.businessName || "정보 없음"}</b>
-                    </p>
+                    </p> */}
                     <p>
                       주관 부처: <b>{subsidy.govOffice || "정보 없음"}</b>
                     </p>
