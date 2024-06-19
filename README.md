@@ -58,7 +58,7 @@
   <tr>
     <td align="center">
       <a href="">
-        <h3><b>정승환</b></h3>
+        <big><b>정승환</b></big>
       </a>
       <br />
       팀장
@@ -67,14 +67,14 @@
     </td>
     <td align="center">
       <a href="">
-        <h3><b>박기문</b></h3>
+        <big><b>박기문</b></big>
       </a>
       <br />
       백엔드 개발
     </td>
     <td align="center">
       <a href="">
-        <h3><b>박지형</b></h3>
+        <big><b>박지형</b></big>
       </a>
       <br />
       프론트엔드 개발
@@ -83,7 +83,7 @@
     </td>
     <td align="center">
       <a href="">
-        <h3><b>전우현</b></h3>
+        <big><b>전우현</b></big>
       </a>
       <br />
       데이터 분석    
