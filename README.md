@@ -58,7 +58,6 @@
   <tr>
     <td align="center">
       <a href="">
-        <img src="" width="100px;" alt=""/>
         <br />
         <sub><b>정승환</b></sub>
       </a>
@@ -69,7 +68,6 @@
     </td>
     <td align="center">
       <a href="">
-        <img src="" width="100px;" alt="nothing"/>
         <br />
         <sub><b>박기문</b></sub>
       </a>
@@ -78,7 +76,6 @@
     </td>
     <td align="center">
       <a href="">
-        <img src="" width="100px;" alt="nothing"/>
         <br />
         <sub><b>박지형</b></sub>
       </a>
@@ -89,7 +86,6 @@
     </td>
     <td align="center">
       <a href="">
-        <img src="" width="100px;" alt="nothing"/>
         <br />
         <sub><b>전우현</b></sub>
       </a>
