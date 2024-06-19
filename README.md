@@ -1,12 +1,9 @@
 # 2024-1-OSS-team-10-TaxMap
 
-# 🌳 티맵(Tax Map) 프로젝트
+# Tax Map 프로젝트
 
-<div align="center">
-  <img src="https://example.com/tax-map-logo.png" alt="Tax Map Logo" width="200">
-</div>
 
-티맵 프로젝트는 세금 지출의 투명성과 이해를 높이고자 개인 납세액이 어떻게 공공 프로젝트에 사용되는지 쉽게 시각화하여 제공하는 서비스입니다.
+본 프로젝트는 세금 지출의 투명성과 이해를 높이고자 개인 납세액이 어떻게 공공 프로젝트에 사용되는지 쉽게 시각화하여 제공하는 서비스입니다.
 
 [![Project Status](https://img.shields.io/badge/status-active-brightgreen)](https://example.com)
 [![License](https://img.shields.io/badge/license-MIT-blue)](https://opensource.org/licenses/MIT)
@@ -32,7 +29,7 @@
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" title="Java" width="40" height="40"/>
 </div>
 
-### 데이터 분석
+### 데이터 수집 및 분석
 <div>
  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" title="Python" width="40" height="40"/>
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" title="Pandas" width="40" height="40"/>
@@ -40,16 +37,15 @@
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/matplotlib/matplotlib-original.svg" title="Matplotlib" width="40" height="40"/>
 </div>
 
-### 인프라
+### 배포
 <div>
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" title="Docker" width="40" height="40"/>
     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" title="AWS" width="40" height="40"/>
 </div>
 
 ## 🚀 프로젝트 기간
 
-- **시작:** 2023년 3월 17일
-- **종료 예정:** 2023년 6월 12일
+- **시작:** 2024년 3월 17일
+- **종료 예정:** 2024년 6월 12일
 
 ## 👥 팀 구성
 
