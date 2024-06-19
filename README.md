@@ -8,6 +8,11 @@
 [![Project Status](https://img.shields.io/badge/status-active-brightgreen)](https://example.com)
 [![License](https://img.shields.io/badge/license-MIT-blue)](https://opensource.org/licenses/MIT)
 
+![프로젝트 이미지 - 메인 페이지](https://github.com/CSID-DGU/2024-1-OSS-team-10-TaxMap/blob/main/readme_img/mainpage.png)
+
+![프로젝트 이미지 - 지도 페이지](https://github.com/CSID-DGU/2024-1-OSS-team-10-TaxMap/blob/main/readme_img/mappage.png)
+
+
 ## 🎯 프로젝트 목표
 
 - **투명성 및 인사이트 제공:** 시각화된 자료로 세금 지출에 대한 통찰력 제공 및 세금의 가치 이해도 향상
