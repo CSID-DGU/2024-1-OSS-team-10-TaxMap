@@ -1,0 +1,181 @@
+.searchbar-container {
+  position: relative;
+  width: 100%;
+  height: 460px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.searchbar-title {
+  color: white;
+  text-align: center; /* 중앙 정렬 */
+  margin-bottom: 20px; /* 검색 입력란과의 간격 */
+  font-family: NanumSquare;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+}
+
+.searchbar-input-container {
+  display: flex;
+  justify-content: space-between; /* input과 button 사이의 간격을 조정 */
+  align-items: center;
+  padding: 0;
+  width: 766px;
+  height: 50px;
+  border-radius: 30px;
+  border: 4px solid #8a7be5;
+  background: #8a7be5; /* 버튼 배경과 동일하게 하기 위함*/
+  position: relative;
+}
+
+.searchbar-input-container input {
+  flex-grow: 1; /* input 필드가 남은 공간을 모두 차지하도록 함 */
+  border: none;
+  padding: 0 15px; /* 입력 텍스트와 입력 필드의 경계 사이 여백 조정 */
+  height: 100%;
+  border-radius: 25px 0 0 25px; /* 왼쪽 둥근 모서리만 적용 */
+  font-size: 16px;
+  color: #333;
+  font-family: NanumSquare;
+}
+.search-button {
+  width: 50px;
+  height: 100%;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.search-button-image {
+  width: 100%;
+  height: auto;
+}
+
+/* 입력 창 클릭 시 검은 테두리 표시 제거 */
+.searchbar-input-container input:focus {
+  outline: none;
+}
+
+/*  검색어 목록 ui */
+.suggestions-list {
+  top: 260px; /* 입력 필드 바로 아래 드롭다운 형태로 위치 */
+  bottom: 100%; /* 토클 버튼 위로 위치 */
+  list-style: none;
+  margin-top: -5px; /* 토클 버튼과 겹치게 설정*/
+  /* padding: 0; */
+  padding: 5px 10px 5px 5px;
+  margin-top: 20px;
+  position: absolute;
+  /* width: 100%; */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  max-height: 300px;
+  overflow-y: auto; /* 추천 목록이 많을 경우 스크롤 가능 */
+  overflow-x: hidden; /* 가로 스크롤 비활성화 */
+  width: 766px;
+  height: 220px;
+  flex-shrink: 0;
+  border-radius: 30px;
+  border: 1px solid #8a7be5;
+  background: #fff;
+  z-index: 100; /* 다른 요소보다 위에 위치 */
+  box-sizing: border-box; /* 컨텐츠, 패딩, 테두리 포함 계산 */
+}
+
+.suggestions-list li {
+  padding: 10px 20px;
+  border-bottom: 1px solid #f1f1f1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.suggestions-list li:hover {
+  background-color: #f8f8f8;
+  color: #000;
+  font-family: NanumSquare;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.suggestions-icon {
+  margin-right: 10px;
+  flex-shrink: 0; /* 아이콘 크기 유지 */
+}
+
+.suggestion-text {
+  flex-grow: 1; /* 텍스트가 남은 공간을 차지하도록 */
+}
+
+/* 토글 버튼*/
+.toggle-buttons-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 37px;
+  width: 469px;
+  height: 50px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: #342d57;
+}
+
+.toggle-button {
+  flex: 1;
+  padding: 10px;
+  background-color: transparent;
+  cursor: pointer;
+  border-radius: 10px;
+  border: none;
+  color: #fff;
+  font-family: NanumSquare;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.toggle-button.active {
+  background-color: white;
+  color: #000;
+  font-family: NanumSquare;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.suggestion-address {
+  color: #515151;
+  font-weight: 700px;
+}
+/* 스크롤바 전체를 위한 스타일 */
+.suggestions-list::-webkit-scrollbar {
+  width: 10px; /* 스크롤바의 너비 */
+}
+
+/* 스크롤바 트랙(바탕) */
+.suggestions-list::-webkit-scrollbar-track {
+  background: #f1f1f1; /* 트랙의 배경 색상 */
+  border-radius: 10px; /* 트랙의 모서리 둥글게 */
+}
+
+/* 스크롤바 썸(핸들) */
+.suggestions-list::-webkit-scrollbar-thumb {
+  background-color: darkgrey; /* 썸의 색상 */
+  border-radius: 10px; /* 썸의 모서리 둥글게 */
+  border: 2px solid transparent; /* 투명한 테두리로 인한 내부 여백 조정 */
+  background-clip: content-box; /* 테두리 내부의 배경 콘텐츠만 표시 */
+}
+
+/* 스크롤바 썸(핸들)에 마우스 호버 시 */
+.suggestions-list::-webkit-scrollbar-thumb:hover {
+  background-color: #b0b0b0; /* 썸의 호버 색상 변경 */
+}
