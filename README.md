@@ -3,7 +3,7 @@
 # Tax Map 프로젝트
 
 
-본 프로젝트는 세금 지출의 투명성과 이해를 높이고자 개인 납세액이 어떻게 공공 프로젝트에 사용되는지 쉽게 시각화하여 제공하는 서비스입니다.
+본 프로젝트는 세금 지출의 투명성과 이해를 높이고자 우리가 낸 세금들이 어디에 어떻게 여러 지원 사업에 사용되는지 쉽게 시각화하여 제공하는 서비스입니다.
 
 [![Project Status](https://img.shields.io/badge/status-active-brightgreen)](https://example.com)
 [![License](https://img.shields.io/badge/license-MIT-blue)](https://opensource.org/licenses/MIT)
